@@ -1,0 +1,20 @@
+{
+  "name": "bed-ca1-sertzzxc",
+  "version": "1.0.0",
+  "description": "You are required to build your folder structures for your project.",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm run init_tables && jest --forceExit",
+    "init_tables": "node src/configs/initTables.js",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.21.2",
+    "mysql2": "^3.6.3",
+    "nodemon": "^3.0.1"
+  }
+}
