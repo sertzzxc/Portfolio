@@ -1,8 +1,9 @@
 <HTML>
 <!DOCTYPE html>
-<html lang="en">    
+<html lang="en">
+
 <head>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>YH - My Portfolio</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -11,7 +12,7 @@
   <!-- Main CSS File -->
   <link href="./style.css" rel="stylesheet">
   <style>
-  body {
+    body {
       font-family: 'Poppins', sans-serif;
     }
 
@@ -39,240 +40,270 @@
       padding: 30px;
     }
 
+    #navbar {
+      transition: all 0.3s ease;
+      padding: 1.5rem 1rem;
+      /* large padding */
+      font-size: 1rem;
+    }
+
+    /* Small navbar (when scrolled) */
+    #navbar.navbar-small {
+      padding: 0.5rem 1rem;
+      /* smaller padding */
+      font-size: 0.9rem;
+    }
+
     /* Navbar Link Base Style */
-/* Navbar Base */
-.navbar-nav .nav-link {
-  color: #fff !important;
-  position: relative;
-  overflow: hidden;
-  transition: color 0.3s ease;
-}
+    /* Navbar Base */
+    .navbar-nav .nav-link {
+      color: #fff !important;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.3s ease;
+    }
+
+    /* Navbar Link Hover Background */
+    .navbar-nav .nav-link:hover {
+      background-color: #333;
+      border-radius: 8px;
+      color: #fff !important;
+      transform: translateY(-2px);
+      box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Animated Background Overlay (Underline) */
+    .navbar-nav .nav-link::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #fff;
+      transition: width 0.4s ease-in-out;
+    }
+
+    /* Show underline on hover */
+    .navbar-nav .nav-link:hover::before {
+      width: 100%;
+    }
+
+    /* Hover for Active Link */
+    .nav-item .nav-link:hover {
+      /* Slightly lighter gray */
+      color: black;
+      /* White text */
+      transition: background-color 0.4s ease, color 0.3s ease, transform 0.3s ease;
+    }
 
 
-/* Navbar Link Hover Background */
-.navbar-nav .nav-link:hover {
-  background-color: #333;
-  border-radius: 8px;
-  color: #fff !important;
-  transform: translateY(-2px);
-  box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2);
-}
 
-/* Animated Background Overlay (Underline) */
-.navbar-nav .nav-link::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: #fff;
-  transition: width 0.4s ease-in-out;
-}
-
-/* Show underline on hover */
-.navbar-nav .nav-link:hover::before {
-  width: 100%;
-}
-
-/* Hover for Active Link */
-.nav-item .nav-link:hover {
-  background-color: #444; /* Slightly lighter gray */
-  color:black; /* White text */
-  transition: background-color 0.4s ease, color 0.3s ease, transform 0.3s ease;
-}
- 
-/* Active Link Glow Effect */
-.nav-item .nav-link:hover {
-  box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2); /* Subtle white glow */
-}
-
-/* Focus/Active Link Style */
-.navbar-nav .nav-link:focus,
-.navbar-nav .nav-link:active {
-  background-color: #555; /* Medium gray */
-  color: #fff;
-  outline: none;
-  transition: background-color 0.4s ease;
-}
-
-#navbar {
-  border-bottom: 2px solid #fff; /* white border at the bottom */
-}
+    /* Focus/Active Link Style */
+    .navbar-nav .nav-link:focus,
+    .navbar-nav .nav-link:active {
+      background-color: #555;
+      /* Medium gray */
+      color: #fff;
+      outline: none;
+      transition: background-color 0.4s ease;
+    }
 
 
-/* Card Animation */
-.card-body.show {
-  max-height: 500px;
-}
 
-#welcomeMessage {
-  opacity: 0;
-  transform: translateY(-20px);
-  animation: fadeIn 1s ease-in-out forwards;
-}
+    /* Card Animation */
+    .card-body.show {
+      max-height: 500px;
+    }
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+    #welcomeMessage {
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeIn 1s ease-in-out forwards;
+    }
 
-.card {
-  opacity: 0;
-  transform: translateX(-30px);
-  animation: slideIn 0.8s ease forwards;
-  background-color: #000; /* Black card background */
-  border: 1px solid #fff; /* White border */
-  color: black; /* White text */
-}
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-@keyframes slideIn {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
+    .card {
+      opacity: 0;
+      transform: translateX(-30px);
+      animation: slideIn 0.8s ease forwards;
+      background-color: #000;
+      /* Black card background */
+      border: 1px solid #fff;
+      /* White border */
+      color: black;
+      /* White text */
+    }
 
-.about-wrapper {
-  position: relative;
-  width: 100%;
-  display: block;
-  padding-bottom: 5rem; /* space so preview doesn't overlap text */
-}
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
 
-/* This keeps it centered under your text */
-.next-preview-link {
-  display: block;     
-  width: 100%;
-  margin-top: 1rem;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;           /* always below all paragraphs */
-  z-index: 10;
-}
+    .about-wrapper {
+      position: relative;
+      width: 100%;
+      display: block;
+      padding-bottom: 5rem;
+      /* space so preview doesn't overlap text */
+    }
 
-/* Fade-in box */
-.next-preview {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(6px);
-  color: white;
-  padding: 1rem 1.25rem;
-  border-radius: 10px;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.5s ease, transform 0.3s ease;
-  cursor: pointer;
-  position: relative; /* ensures arrow stays inside */
-}
+    /* This keeps it centered under your text */
+    .next-preview-link {
+      display: block;
+      width: 100%;
+      margin-top: 1rem;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      /* always below all paragraphs */
+      z-index: 10;
+    }
 
-/* Fade in when hovering ANY part of the wrapper */
-.about-wrapper:hover .next-preview {
-  opacity: 1;
-  transform: translateY(0);
-}
+    /* Fade-in box */
+    .next-preview {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(6px);
+      color: white;
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.5s ease, transform 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      /* ensures arrow stays inside */
+    }
 
-/* Arrow inside the box */
-.scroll-down {
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.7rem;
-  opacity: 0.75;
-  pointer-events: none;
-}
+    /* Fade in when hovering ANY part of the wrapper */
+    .about-wrapper:hover .next-preview {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.main-scroll-down {
-  position: absolute;       /* position relative to parent */
-  bottom: 100px;             /* distance from bottom of main */
-  left: 50%;      
-  font-size: 2.5rem;
-  display: inline-block;       /* needed for transform */
-  animation: bounce 1.5s infinite;
-}
+    /* Arrow inside the box */
+    .scroll-down {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.7rem;
+      opacity: 0.75;
+      pointer-events: none;
+    }
 
-.fade-section {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
+    .main-scroll-down {
+      position: absolute;
+      /* position relative to parent */
+      bottom: 100px;
+      /* distance from bottom of main */
+      left: 50%;
+      font-size: 2.5rem;
+      display: inline-block;
+      /* needed for transform */
+      animation: bounce 1.5s infinite;
+    }
 
-.fade-section.active {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .fade-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
 
-#about {
-  padding-top: 100px;
-  box-sizing: border-box;
-}
+    .fade-section.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-html {
-  scroll-behavior: smooth;        /* smooth scrolling */
-  scroll-snap-type: y mandatory;  /* vertical snap */
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
+    #about {
+      padding-top: 100px;
+      box-sizing: border-box;
+    }
 
-/* Optional: Body background */
-body {
-  background-color: #000; /* Black background */
-  color: #fff; /* Default white text */
-  scroll-snap-type: y mandatory;  /* make sections snap inside body */
-  margin: 0;
-  padding: 0;
-}
+    html {
+      scroll-behavior: smooth;
+      /* smooth scrolling */
+      scroll-snap-type: y mandatory;
+      /* vertical snap */
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
 
-.cursor {
+    /* Optional: Body background */
+    body {
+      background-color: #000;
+      /* Black background */
+      color: #fff;
+      /* Default white text */
+      scroll-snap-type: y mandatory;
+      /* make sections snap inside body */
+      margin: 0;
+      padding: 0;
+    }
+
+      
+
+
+    .cursor {
       display: inline-block;
       margin-left: 2px;
       animation: blink 1s steps(2, start) infinite;
     }
-    @keyframes blink { to { visibility: hidden; } }
 
+    @keyframes blink {
+      to {
+        visibility: hidden;
+      }
+    }
   </style>
-</head>                          
+</head>
+
 <body class="index-page">
-    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-3 ">
-  <div class="container-fluid">
-    <!-- Brand -->
-    <a class="navbar-brand fw-bold text-primary fs-4" href="#">SYH19</a>
+  <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-2">
+    <div class="container-fluid">
+      <!-- Brand -->
+      <a class="navbar-brand fw-bold text-primary fs-4" href="#">SYH19</a>
 
-    <!-- Toggle for mobile -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <!-- Toggle for mobile -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <!-- Nav Links -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link text-white mx-2" href="./index.html">Dashboard</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white mx-2" href="#about">About Me</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white mx-2" href="#">Projects</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white mx-2" href="#">Achievements</a>
-        </li>
-      </ul>
+      <!-- Nav Links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link text-white mx-2" href="./index.html">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white mx-2" href="#about">About Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white mx-2" href="#">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white mx-2" href="#">Achievements</a>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-  <body class="bg-black text-white">
-  <!-- Main -->
-  <main class="d-flex flex-column justify-content-center align-items-center text-center vh-100 bg-black text-white">
-   
+  <div class="page-wrapper bg-black text-white">
+    <main class="d-flex flex-column justify-content-center align-items-center text-center vh-100 bg-black text-white">
+
       <div class="col-lg-8 mx-auto text-center">
         <h1 class="display-4 fw-bold mb-3"> Hello, I am <span class="text-white-50">[See Yong Hong]</span></h1>
 
@@ -286,113 +317,114 @@ body {
 
       <br>
       <br>
-  </main>
+    </main>
 
 
-  <section id="about" class="vh-100 bg-dark text-white d-flex flex-column justify-content-center align-items-center fade-section">
-    <div class="mt-5"></div>
-    <div class="mt-5"></div>
-    <h1 class="fw-bold mb-3 mt-5" style="font-size: 3rem;">Who is <span class="text-white-50">[See Yong Hong]</span> ?</h1>
-    <br>
-    <div class="container">
+    <section id="about"
+      class="vh-100 bg-dark text-white d-flex flex-column justify-content-center align-items-center fade-section py-5">
+      <h1 class="fw-bold mb-5" style="font-size: 3rem;">
+        Who is <span class="text-white-50">[See Yong Hong]</span>?
+      </h1>
+
+      <div class="container">
         <div class="row align-items-center">
-          <!-- LEFT: TEXT -->
+          <!-- LEFT: Text -->
           <div class="col-md-6">
-            
             <h5 class="fw-semibold mb-4">
-              Hello, I Am <span class="text-white-50">[See Yong Hong]</span> !
+              Hello, I Am <span class="text-white-50">[See Yong Hong]</span>!
             </h5>
+
             <div class="about-wrapper">
-              <p class="mb-3" >
+              <p class="mb-3">
                 <span style="font-size: 1.5rem; line-height: 0;">“</span>
-                I'm a developer who loves creating clean interfaces, solving everday problems with technology,
+                I'm a developer who loves creating clean interfaces, solving everyday problems with technology,
                 and building meaningful digital experiences. I enjoy blending creativity with logic,
                 especially when turning complex issues into smooth, efficient solutions.
               </p>
 
-              <p>
+              <p class="mb-4">
                 Outside of coding, I'm deeply involved in Ultimate Frisbee — representing SP Ultimate and
                 the National Youth Team Programme. My journey has shaped my discipline, teamwork,
-                and passion for growth in everything I do. <span style="font-size: 1.5rem; line-height: 0;">"</span>
+                and passion for growth in everything I do.
+                <span style="font-size: 1.5rem; line-height: 0;">"</span>
               </p>
-              <br>
-              <br>
-              <a href="#skills" class="next-preview-link text-decoration-none">
+
+              <div class="mb-5"></div>
+
+              <a href="#skills" class="next-preview-link text-decoration-none mt-4">
                 <div class="next-preview">
-                  <h4>Up Next: My Technical [Skills</h4>
+                  <h4>Up Next: My Technical Skills</h4>
                   <p>Click or scroll to explore what I specialize in.</p>
                   <span class="scroll-down">↓</span>
                 </div>
               </a>
-              
             </div>
           </div>
-            
 
-          <div class="col-md-1">
-            <!-- Spacer Column -->
-          </div>
+          <!-- Spacer Column -->
+          <div class="col-md-1"></div>
 
-          <!-- RIGHT: IMAGE -->
-          <div class="col-md-5 text-center mt-4 mt-md-0 mb-5">
+          <!-- RIGHT: Image -->
+          <div class="col-md-5 text-center mt-4 mt-md-0">
             <img 
-              src="img/aboutMe.jpeg"
-              alt=""
+              src="img/aboutMe.jpeg" 
+              alt="[See Yong Hong]" 
               class="img-fluid rounded"
-              style="max-height: 500px; width: 100%; object-fit: cover; border-radius: 6px; border: 2px solid #fff;"
+              style="
+                width: 400px; 
+                height: 400px; 
+                object-fit: cover; 
+                border-radius: 6px; 
+                border: 2px solid #fff;
+              "
             >
           </div>
-         
         </div>
       </div>
-      <div class="mb-5"></div> <!-- adds vertical space -->
-      <div class="mb-5"></div> <!-- adds vertical space -->
+    </section>
 
-      <div class="mb-5"></div> <!-- adds vertical space -->
-      <div class="mb-5"></div> <!-- adds vertical space -->
 
-          
-  </section>
+    <section id="skills"
+      class="vh-100 bg-dark text-white d-flex flex-column justify-content-center align-items-center fade-section">
+      <h1 class="fw-bold mb-3" style="font-size: 3rem;">My Skills</h1>
 
-  <section id="skills"  class="vh-100 bg-dark text-white d-flex flex-column justify-content-center align-items-center fade-section">
-    <h1 class="fw-bold mb-3" style="font-size: 3rem;">My Skills</h1>
+      <div class="skills-charts d-flex flex-wrap justify-content-center align-items-center gap-5">
+        <div class="card text-center bg-dark text-white" style="width: 200px; border: 2px solid #fff;">
+          <div class="card-body">
+            <canvas id="jsChart"></canvas>
+            <h5 class="card-title mt-3">JavaScript</h5>
+          </div>
+        </div>
+        <div class="card text-center bg-dark text-white" style="width: 200px; border: 2px solid #fff;">
+          <div class="card-body">
+            <canvas id="javaChart"></canvas>
+            <h5 class="card-title mt-3">Java</h5>
+          </div>
+        </div>
 
-    <div class="skills-charts d-flex flex-wrap justify-content-center align-items-center gap-5">
-    <div class="card text-center bg-dark text-white" style="width: 200px; border: 2px solid #fff;">
-      <div class="card-body">
-        <canvas id="jsChart"></canvas>
-        <h5 class="card-title mt-3">JavaScript</h5>
-      </div>
-    </div>
-   <div class="card text-center bg-dark text-white" style="width: 200px; border: 2px solid #fff;">
-    <div class="card-body">
-      <canvas id="javaChart"></canvas>
-      <h5 class="card-title mt-3">Java</h5>
-    </div>
+        <!-- Python Card -->
+        <div class="card text-center bg-dark text-white" style="width: 200px; border: 2px solid #fff;">
+          <div class="card-body">
+            <canvas id="pythonChart"></canvas>
+            <h5 class="card-title mt-3">Python</h5>
+          </div>
+        </div>
+
+        <!-- HTML Card -->
+        <div class="card text-center bg-dark text-white" style="width: 200px; border: 2px solid #fff;">
+          <div class="card-body">
+            <canvas id="htmlChart"></canvas>
+            <h5 class="card-title mt-3">HTML</h5>
+          </div>
+        </div>
+
+    </section>
   </div>
 
-  <!-- Python Card -->
-  <div class="card text-center bg-dark text-white" style="width: 200px; border: 2px solid #fff;">
-    <div class="card-body">
-      <canvas id="pythonChart"></canvas>
-      <h5 class="card-title mt-3">Python</h5>
-    </div>
-  </div>
 
-  <!-- HTML Card -->
-  <div class="card text-center bg-dark text-white" style="width: 200px; border: 2px solid #fff;">
-    <div class="card-body">
-      <canvas id="htmlChart"></canvas>
-      <h5 class="card-title mt-3">HTML</h5>
-    </div>
-  </div>
-
-  </section>
-
-  
 
   <script src="./index.js" type="text/javascript"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="./skills-chart.js"></script>
-</body>
+
 </HTML>

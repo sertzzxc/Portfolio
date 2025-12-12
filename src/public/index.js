@@ -41,18 +41,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let lastScrollY = window.scrollY;
 
-  window.addEventListener("scroll", () => {
-  const navbar = document.getElementById("navbar");
+  // Shrink navbar on scroll
+  window.addEventListener("scroll", function() {
+    const navbar = document.getElementById("navbar");
+    if (window.scrollY > 70) { // start shrinking after 50px scroll
+      navbar.classList.add("navbar-small");
+    } else {
+      navbar.classList.remove("navbar-small");
+    }
+  });
 
-  if (window.scrollY > lastScrollY) {
-    // Scrolling down → hide navbar
-    navbar.classList.add("hide");
-  } else {
-    // Scrolling up → show navbar
-    navbar.classList.remove("hide");
-  }
-
-  lastScrollY = window.scrollY;
 
   const sections = document.querySelectorAll('.fade-section');
 
@@ -64,9 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
         entry.target.classList.remove('active'); // remove for fade-out
       }
     });
-  }, { threshold: 0.3 }); // trigger when 20% of the section is visible
+  }, { threshold: 0.1 }); // trigger when 20% of the section is visible
 
   sections.forEach(section => observer.observe(section));
   
-});
+  
 });
