@@ -69,4 +69,16 @@ document.addEventListener('DOMContentLoaded', () => {
     options: { plugins: { legend: { display: false } }, cutout: '70%' }
   });
 
+  new Chart(document.getElementById('VBScriptChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['VBScript', 'Remaining'],
+      datasets: [{  
+        data: [65, 35],
+        backgroundColor: ['#6a5acd', '#444'],
+        borderWidth: 2
+      }]
+    },
+    options: { plugins: { legend: { display: false } }, cutout: '70%' }
+  });
 });
