@@ -53,5 +53,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   lastScrollY = window.scrollY;
+
+  const sections = document.querySelectorAll('.fade-section');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      } else {
+        entry.target.classList.remove('active'); // remove for fade-out
+      }
+    });
+  }, { threshold: 0.3 }); // trigger when 20% of the section is visible
+
+  sections.forEach(section => observer.observe(section));
+  
 });
 });
