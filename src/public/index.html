@@ -335,6 +335,20 @@
   border: 2px solid #ddd;
 }
 
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 14px;
+  height: 14px;
+  background-color: #fff;
+  border-radius: 50%;
+
+  z-index: 1; 
+}
+
 
     @keyframes blink {
       to {
@@ -393,8 +407,8 @@
 
 
   <section id="about"
-    class="vh-100 bg-dark text-white d-flex flex-column justify-content-center align-items-center fade-section py-5">
-    <h1 class="fw-bold mb-5" style="font-size: 3rem;">
+    class="min-vh-100 bg-dark text-white d-flex flex-column justify-content-center align-items-center fade-section py-5">
+    <h1 class="fw-bold mb-5 text-center" style="font-size: 3rem;">
       Who is <span class="text-white-50">[See Yong Hong]</span>?
     </h1>
 
