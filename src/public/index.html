@@ -315,6 +315,25 @@
     font-style: italic;
   }
 
+  .timeline-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 15px;
+  height: 15px;
+  background: white;
+  border: 3px solid black;
+  border-radius: 50%;
+  z-index: 10;
+  }
+
+.timeline-year h5 {
+  display: inline-block;
+  padding: 8px 15px;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+}
 
 
     @keyframes blink {
@@ -461,39 +480,62 @@
                 <a href="./technicalSkills.html" target="_blank" class="text-primary fw-bold ms-2">Read More →</a>
             </div>
           </div>
+           <!-- CENTER DOT -->
+          <div class="timeline-dot"></div>
+
+          <!-- RIGHT: Time Period -->
+          <div class="col-6">
+            <div class="timeline-year text-start">
+              <h5 class="fw-bold">2015 – 2019</h5>
+            </div>
+          </div>
           <div class="col-6"></div>
         </div>
 
         <!-- Timeline Item 2 -->
-        <div class="timeline-item row align-items-center mb-5">
-          <div class="col-6"></div>
+       <div class="timeline-item row align-items-center mb-5 position-relative">
+
+          <!-- LEFT: Time Period -->
+          <div class="col-6 text-end">
+            <div class="timeline-year d-inline-block">
+              <h5 class="fw-bold">2019 – 2022</h5>
+            </div>
+          </div>
+
+          <!-- RIGHT: Card -->
           <div class="col-6 text-start">
             <div class="card bg-dark text-white border-white p-3 d-inline-block mb-3">
               <h5 class="fw-bold">Secondary School Learning</h5>
-              <p> Gained hands-on experience with <strong>object-oriented programming</strong> through tiny class
-                projects. </p>
+              <p>
+                Gained hands-on experience with <strong>object-oriented programming</strong>
+                through tiny class projects.
+              </p>
               <span class="hover-hint">Hover to learn more →</span>
-
             </div>
+
             <div class="card detail-card bg-secondary text-white p-3 position-absolute">
               <h6 class="fw-bold">My Secondary Experience</h6>
               <p>
-                Was given the opportunity to explore <strong>Microbit</strong> through mini-class projects, as well as
-                collaborate in a team for a final project, where I used the Microbit to develop a
-                <strong>sustainability-focused project</strong>.
+                Was given the opportunity to explore <strong>Microbit</strong> through mini-class projects,
+                and collaborate in a final project using the Microbit to develop a
+                <strong>sustainability-focused solution</strong>.
               </p>
               <a href="./technicalSkills.html" target="_blank" class="text-primary fw-bold ms-2">Read More →</a>
             </div>
           </div>
-        </div>
 
+          <!-- CENTER DOT -->
+          <div class="timeline-dot"></div>
+
+        </div>
+          
         <!-- Timeline Item 3 -->
         <div class="timeline-item row align-items-center mb-5">
           <div class="col-6 text-end">
             <div class="card bg-dark text-white border-white p-3 d-inline-block">
               <h5 class="fw-bold"><span style="color: red; font-weight: bold;">Singapore Polytechnic Diploma</span></h5>
               <p> Specialised in Fullstack Development using <strong>HTML</strong>, <strong>JavaScript</strong>, and
-                <strong>Java</strong>, with hands-on experience in databases such as <strong>MySQL</strong> and
+                <strong>Java</strong>, with hands-on experience in database maanagement via <strong>MySQL</strong> and
                 <strong>Prisma</strong>. Gained skills in <strong>UI/UX Design</strong> and developed a solid foundation
                 in <strong>Networking Fundamentals</strong>.</p>
                 <span class="hover-hint">Hover to learn more ←</span>
@@ -511,25 +553,51 @@
               <a href="./technicalSkills.html" target="_blank" class="text-primary fw-bold ms-2">Read More →</a>
             </div>
           </div>
+          <!-- CENTER DOT -->
+          <div class="timeline-dot"></div>
+
+          <!-- RIGHT: Time Period -->
+          <div class="col-6">
+            <div class="timeline-year text-start">
+              <h5 class="fw-bold">2023 – Present</h5>
+            </div>
+          </div>
           <div class="col-6"></div>
         </div>
 
         <!-- Timeline Item 4 -->
         <div class="timeline-item row align-items-center mb-5">
-          <div class="col-6"></div>
+          <div class="col-6 text-end">
+            <div class="timeline-year d-inline-block">
+              <h5 class="fw-bold">2023 – 2025</h5>
+            </div>
+          </div>
+          
           <div class="col-6 text-start">
             <div class="card bg-dark text-white border-white p-3 d-inline-block">
               <h5 class="fw-bold">Data & Artificial Intelligence Certificate</h5>
               <p>Building responsive layouts, semantic HTML, and modern CSS animations.</p>
+              <span class="hover-hint">Hover to learn more →</span>
+            </div>
+             <div class="card detail-card bg-secondary text-white p-3 position-absolute">
+              <h6 class="fw-bold">My Certificate Experience</h6>
+              <p>
+                Was given the opportunity to explore <strong>Microbit</strong> through mini-class projects,
+                and collaborate in a final project using the Microbit to develop a
+                <strong>sustainability-focused solution</strong>.
+              </p>
+              <a href="./technicalSkills.html" target="_blank" class="text-primary fw-bold ms-2">Read More →</a>
             </div>
           </div>
+          <div class="timeline-dot"></div>
+
         </div>
 
         <!-- Timeline Item 5 -->
         <div class="timeline-item row align-items-center mb-5">
           <div class="col-6 text-end">
             <div class="card bg-dark text-white border-white p-3 d-inline-block">
-              <h5 class="fw-bold">VBScript</h5>
+              <h5 class="fw-bold">Internship @ Synapxe</h5>
               <p>Legacy automation, macros, and scripting for system tasks.</p>
             </div>
           </div>
