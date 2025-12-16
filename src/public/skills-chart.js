@@ -57,17 +57,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // HTML chart
   new Chart(document.getElementById('htmlChart'), {
-    type: 'doughnut',
-    data: {
-      labels: ['HTML', 'Remaining'],
-      datasets: [{
-        data: [skillsData.html, 100 - skillsData.html],
-        backgroundColor: ['#e34f26', '#444'],
-        borderWidth: 2
-      }]
+  type: 'doughnut',
+  data: {
+    labels: ['HTML', 'Remaining'], // This will appear in tooltip and legend
+    datasets: [{
+      data: [skillsData.html, 100 - skillsData.html],
+      backgroundColor: ['#e34f26', '#444'],
+      borderWidth: 2
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'bottom',
+        labels: {
+          color: '#fff', // legend text color
+          font: { size: 14 }
+        }
+      },
+      tooltip: {
+        enabled: true,
+        callbacks: {
+          label: function(context) {
+            return context.label + ': ' + context.parsed + '%';
+          }
+        }
+      },
+      datalabels: {
+        color: '#fff',
+        font: { weight: 'bold', size: 16 },
+        formatter: (value, context) => {
+          return value + '%';
+        }
+      }
     },
-    options: { plugins: { legend: { display: false } }, cutout: '70%' }
-  });
+    cutout: '70%' // keeps the doughnut hollow
+  },
+  plugins: [ChartDataLabels] // register the plugin
+});
 
   new Chart(document.getElementById('VBScriptChart'), {
     type: 'doughnut',
