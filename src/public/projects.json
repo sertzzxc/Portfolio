@@ -1,0 +1,36 @@
+[
+  {
+    "id": "full-stack",
+    "category": "Web development",
+    "title": "Full-stack Web Projects",
+    "summary": "Multi-page websites and full-stack applications combining interface and database work.",
+    "overview": "A collection of web projects built to bring together front-end interfaces and database-backed features.",
+    "approach": "Explored responsive page layouts, interactive behavior, database management, and UI/UX design across project work.",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Responsive design",
+      "MySQL",
+      "Prisma",
+      "UI/UX design"
+    ]
+  },
+  {
+    "id": "hdb-analysis",
+    "category": "Data analysis · Python",
+    "title": "HDB Household Composition and Distribution",
+    "summary": "An exploration of household composition using a public gov.sg dataset and a Jupyter Notebook.",
+    "overview": "I used this analysis to become more familiar with Python data tools, including NumPy and Matplotlib.",
+    "approach": "The notebook includes a box plot comparing household-size percentages across ethnic groups. The visualization was created with Pandas and Matplotlib.",
+    "image": "./img/Projects/HDB.png",
+    "imageAlt": "Jupyter Notebook screenshot showing a box plot of household-size percentages by ethnic group",
+    "caption": "A box plot from the household composition analysis.",
+    "skills": [
+      "Python",
+      "Pandas",
+      "NumPy",
+      "Matplotlib"
+    ]
+  }
+]

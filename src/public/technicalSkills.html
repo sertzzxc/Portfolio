@@ -5,8 +5,9 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>YH - My Portfolio</title>
+  <title>Technical Skills | YH Portfolio</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <!-- Main CSS File -->
@@ -163,122 +164,755 @@
       }
     }
 
-    .construction-container {
+    .skills-tree-page {
+      min-height: 100vh;
+      padding: 9rem 1.25rem 5rem;
+      
+    }
+
+    .skills-tree-heading {
+      max-width: 850px;
+      margin: 0 auto 2rem;
       text-align: center;
-      padding: 3rem;
+    }
+
+    .skills-intro {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+    }
+
+    .skills-intro-photo {
+      width: 120px;
+      height: 120px;
+      flex: 0 0 auto;
+      border: 2px solid rgba(255, 255, 255, 0.65);
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 28%;
+      box-shadow: 0 0 28px rgba(255, 255, 255, 0.12);
+    }
+
+    .skills-tree-eyebrow {
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .skills-tree-heading h1 {
+      margin: 0.75rem 0;
+      font-size: clamp(2.25rem, 5vw, 3rem);
+      font-weight: 700;
+    }
+
+    .skills-tree-heading p:last-child {
+      color: #b8c0cc;
+      line-height: 1.7;
+    }
+
+    .skills-tree {
+      max-width: 1080px;
+      margin: 0 auto;
+      animation: skillsTreeSlideIn 0.75s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    }
+
+    @keyframes skillsTreeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .tree-root {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      padding-bottom: 2rem;
+    }
+
+    .tree-root::after {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      height: 2rem;
+      border-left: 1px solid rgba(255, 255, 255, 0.4);
+      content: "";
+    }
+
+    .tree-root-button {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 16px;
-      background: rgba(255, 255, 255, 0.05);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      max-width: 480px;
+      background: #101722;
+      color: #fff;
+      text-align: left;
+      transition: border-color 0.2s ease, transform 0.2s ease;
     }
 
-    .icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      animation: float 2s ease-in-out infinite;
+    .tree-root-button:hover {
+      transform: translateY(-2px);
+      border-color: #fff;
     }
 
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 0.75rem;
+    .tree-root-icon {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      flex: 0 0 auto;
+      place-items: center;
+      border-radius: 12px;
+      background: #fff;
+      color: #101722;
+      font-weight: 600;
     }
 
-    p {
-      color: #cbd5f5;
+    .tree-root-label,
+    .tree-root-hint {
+      display: block;
+    }
+
+    .tree-root-label {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .tree-root-hint {
+      margin-top: 0.2rem;
+      color: #aab4c2;
+      font-size: 0.78rem;
+    }
+
+    .skill-tree-content[hidden],
+    .skill-branches[hidden],
+    .branch-skills[hidden] {
+      display: none;
+    }
+
+    .skill-tree-content,
+    .projects-section {
+      max-height: 2400px;
+      overflow: hidden;
+      opacity: 1;
+      transform: translateY(0);
+      transition: max-height 1s ease, opacity 0.65s ease, transform 0.75s ease;
+    }
+
+    .skill-tree-content.is-collapsed,
+    .projects-section.is-collapsed {
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(-12px);
+      pointer-events: none;
+    }
+
+    .skill-branches {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      padding-top: 2rem;
+    }
+
+    .skill-branches::before {
+      position: absolute;
+      top: 0;
+      right: 12.5%;
+      left: 12.5%;
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      content: "";
+    }
+
+    .skill-branch {
+      position: relative;
+      align-self: start;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 14px;
+      background: rgba(18, 21, 27, 0.94);
+    }
+
+    .skill-branch::before {
+      position: absolute;
+      top: -2rem;
+      left: 50%;
+      height: 2rem;
+      border-left: 1px solid rgba(255, 255, 255, 0.3);
+      content: "";
+    }
+
+    .branch-toggle {
+      display: flex;
+      width: 100%;
+      min-height: 76px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 1rem;
+      border: 0;
+      border-radius: 14px;
+      background: transparent;
+      color: #fff;
+      text-align: left;
+    }
+
+    .branch-toggle:hover,
+    .branch-toggle:focus-visible {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .branch-title {
+      display: block;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .branch-count {
+      display: block;
+      margin-top: 0.25rem;
+      color: #aab4c2;
+      font-size: 0.75rem;
+    }
+
+    .branch-chevron {
+      color: #fff;
+      transition: transform 0.2s ease;
+    }
+
+    .branch-toggle[aria-expanded="true"] .branch-chevron {
+      transform: rotate(180deg);
+    }
+
+    .branch-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding: 0 1rem 1rem;
+    }
+
+    .skill-node {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.42rem 0.7rem;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      background: #1b2029;
+      color: #e7edf5;
+      font-size: 0.875rem;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .skill-logo {
+      display: inline-grid;
+      width: 1.15rem;
+      height: 1.15rem;
+      flex: 0 0 auto;
+      place-items: center;
+      color: #fff;
+      font-size: 0.66rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    i.skill-logo {
+      font-size: 1.05rem;
+    }
+
+    .skill-node:hover .skill-logo,
+    .skill-node[aria-pressed="true"] .skill-logo {
+      color: #101722;
+      filter: grayscale(1) brightness(0.35);
+    }
+
+    .skill-node:hover,
+    .skill-node[aria-pressed="true"] {
+      border-color: #fff;
+      background: rgba(255, 255, 255, 0.92);
+      color: #101722;
+    }
+
+    .skill-detail {
+      min-height: 112px;
+      margin-top: 1.25rem;
+      padding: 1.25rem 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 14px;
+      background: rgba(18, 21, 27, 0.78);
+    }
+
+    .skill-detail h2 {
+      margin-bottom: 0.4rem;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .skill-detail p {
+      margin: 0;
+      color: #b8c0cc;
       line-height: 1.6;
-      margin-bottom: 2rem;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 0.6rem 1.2rem;
-      border-radius: 8px;
-      background: #3b82f6;
+    .skill-filter-status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .clear-skill-filters {
+      flex: 0 0 auto;
+      padding: 0.45rem 0.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 999px;
+      background: transparent;
+      color: #fff;
+      font: inherit;
+      font-size: 0.85rem;
+    }
+
+    .clear-skill-filters:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .projects-section {
+      max-width: 1080px;
+      margin: 3rem auto 0;
+      animation: skillsTreeSlideIn 0.75s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s both;
+    }
+
+    .projects-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .projects-heading h2 {
+      margin: 0;
+      font-size: 1.75rem;
+      font-weight: 700;
+    }
+
+    .projects-heading p {
+      margin: 0;
+      color: #aab4c2;
+      font-size: 0.9rem;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .project-card {
+      display: block;
+      width: 100%;
+      padding: 0;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 14px;
+      background: rgba(18, 21, 27, 0.94);
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 260ms ease, transform 260ms ease;
+      color: inherit;
+      text-decoration: none;
+      text-align: left;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .project-card:hover {
+      border-color: rgba(255, 255, 255, 0.4);
       color: #fff;
       text-decoration: none;
-      font-weight: 600;
-      transition: background 0.3s ease;
     }
 
-    .btn:hover {
-      background: #2563eb;
+    .project-card:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 3px;
     }
 
-    .construction-wrapper {
-        min-height: 100vh;
-        padding-top: 100px; /* height of navbar */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        opacity: 0;
-        transform: translateY(40px);
-        animation: slideUp 0.8s ease-out forwards;
-    }
-
-    @keyframes slideUp {
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
- h1 {
-      font-size: 2rem;
-      margin-bottom: 0.75rem;
-    }
-
-    p {
-      color: #cbd5f5;
-      line-height: 1.6;
-      margin-bottom: 2rem;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.6rem 1.2rem;
-      border-radius: 8px;
-      background: #3b82f6;
+    .project-dialog {
+      width: min(920px, calc(100% - 2rem));
+      max-height: min(90vh, 900px);
+      padding: 0;
+      overflow: auto;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 18px;
+      background: #101216;
       color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background 0.3s ease;
     }
 
-    .btn:hover {
-      background: #2563eb;
+    .project-dialog::backdrop {
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(5px);
     }
 
-    .construction-wrapper {
-        min-height: 100vh;
-        padding-top: 100px; /* height of navbar */
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .project-dialog[open] {
+      animation: projectDialogEnter 280ms ease both;
+    }
+
+    @keyframes projectDialogEnter {
+      from {
         opacity: 0;
-        transform: translateY(40px);
-        animation: slideUp 0.8s ease-out forwards;
+        transform: translateY(18px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
-    @keyframes slideUp {
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .project-dialog-header {
+      position: sticky;
+      z-index: 1;
+      top: 0;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0.75rem;
+      background: linear-gradient(#101216 75%, transparent);
     }
 
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+    .project-dialog-close {
+      display: grid;
+      width: 40px;
+      height: 40px;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      background: #20232a;
+      color: #fff;
+      font-size: 1.4rem;
+      line-height: 1;
     }
-    
 
+    .project-dialog-close:hover {
+      background: #fff;
+      color: #101216;
+    }
 
+    .project-dialog-content {
+      padding: 0 2rem 2rem;
+    }
+
+    .project-dialog-category {
+      margin: 0 0 0.6rem;
+      color: #aab4c2;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .project-dialog-title {
+      margin: 0;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .project-dialog-summary {
+      margin: 0.85rem 0 1.5rem;
+      color: #c2c7d0;
+      line-height: 1.7;
+    }
+
+    .project-dialog-image {
+      display: block;
+      width: 100%;
+      max-height: 440px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 12px;
+      background: #08090b;
+      object-fit: contain;
+    }
+
+    .project-dialog-image-placeholder {
+      display: grid;
+      min-height: 220px;
+      place-items: center;
+      border: 1px dashed rgba(255, 255, 255, 0.22);
+      border-radius: 12px;
+      background: #08090b;
+      color: #aab4c2;
+    }
+
+    .project-dialog-caption {
+      margin: 0.5rem 0 0;
+      color: #8d96a3;
+      font-size: 0.8rem;
+    }
+
+    .project-dialog-details {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(200px, 0.8fr);
+      gap: 1.5rem;
+      margin-top: 1.75rem;
+    }
+
+    .project-dialog-details h3 {
+      margin: 0 0 0.6rem;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .project-dialog-details p {
+      margin: 0;
+      color: #c2c7d0;
+      line-height: 1.7;
+      white-space: pre-line;
+    }
+
+    .project-dialog-skills {
+      align-self: start;
+      padding: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .project-dialog-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .project-dialog-tag {
+      padding: 0.3rem 0.55rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      color: #e7eaf0;
+      font-size: 0.78rem;
+    }
+
+    .project-card.is-entering,
+    .project-card.is-leaving {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    .project-card[hidden] {
+      display: none;
+    }
+
+    .project-image-placeholder {
+      display: flex;
+      min-height: 175px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 55%),
+        #101722;
+      color: #b8c0cc;
+      text-align: center;
+    }
+
+    .project-image {
+      display: block;
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      object-position: center;
+      background: #101722;
+    }
+
+    .project-image-icon {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .project-image-placeholder span,
+    .project-image-placeholder code {
+      display: block;
+    }
+
+    .project-image-placeholder code {
+      color: #aab4c2;
+      font-size: 0.72rem;
+      overflow-wrap: anywhere;
+    }
+
+    .project-card-body {
+      padding: 1rem;
+    }
+
+    .project-card-body h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .project-card-body p {
+      margin: 0;
+      color: #b8c0cc;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1rem;
+    }
+
+    .project-tag {
+      padding: 0.25rem 0.55rem;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      color: #e7edf5;
+      font-size: 0.72rem;
+    }
+
+    .projects-empty {
+      margin: 1rem 0 0;
+      padding: 1rem;
+      border: 1px dashed rgba(255, 255, 255, 0.25);
+      border-radius: 12px;
+      color: #b8c0cc;
+      text-align: center;
+    }
+
+    .projects-empty[hidden] {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      .skill-branches {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .project-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .skill-branches::before,
+      .skill-branch::before {
+        display: none;
+      }
+
+      .tree-root::after {
+        height: 1rem;
+      }
+
+      .skill-branches {
+        padding-top: 1rem;
+      }
+    }
+
+    @media (max-width: 575px) {
+      .skills-tree-page {
+        padding: 8rem 1rem 3rem;
+      }
+
+      .skill-branches {
+        grid-template-columns: 1fr;
+      }
+
+      .tree-root-button {
+        width: 100%;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-heading,
+      .skill-filter-status {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .project-dialog-content {
+        padding: 0 1rem 1.25rem;
+      }
+
+      .project-dialog-details {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .skills-tree,
+      .projects-section {
+        animation: none;
+      }
+
+      .tree-root-button,
+      .branch-chevron,
+      .skill-node,
+      .project-card,
+      .skill-tree-content,
+      .projects-section {
+        transition: none;
+      }
+    }
+
+    .speech-card {
+      position: relative;
+      max-width: 600px;
+      padding: 1rem 1.5rem;
+      text-align: left;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      background: #101722;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      color: #b8c0cc;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 575px) {
+      .skills-intro {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .skills-intro-photo {
+        width: 96px;
+        height: 96px;
+      }
+
+      .speech-card {
+        padding: 0.9rem 1.1rem;
+        text-align: center;
+      }
+    }
+
+    .speech-card p {
+      margin-bottom: 0;
+    }
+
+    .speech-card::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      width: 16px;
+      height: 16px;
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      background: #101722;
+      transform: translateX(-50%) rotate(45deg);
+    }
   </style>
 </head>
 
@@ -304,10 +938,10 @@
             <a class="nav-link text-white mx-2" href="./index.html#about">About Me</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white mx-2" href="./index.html#skills">Skills</a>
+            <a class="nav-link text-white mx-2" href="./technicalSkills.html">Skills</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white mx-2" href="./technicalSkills.html">Projects</a>
+            <a class="nav-link text-white mx-2" href="./index.html#skills">Projects</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white mx-2" href="./sports.html">Sports</a>
@@ -316,23 +950,176 @@
       </div>
     </div>
   </nav>
-  <section class="construction-wrapper">
-    <div class="construction-container">
-        <div class="icon">🚧</div>
-        <h1>Page Under Construction</h1>
-        <p>
-        This section is currently being built. I’m working on something meaningful
-        and will be rolling it out soon.
-        </p>
-        <a href="./index.html" class="btn">Back to Home</a>
-    </div>
-  </section>
+
+  <main class="skills-tree-page">
+    <header class="skills-tree-heading">
+      <p class="skills-tree-eyebrow">
+          <span class="text-white-50">[See Yong Hong]'s</span>
+      </p>      
+      <h1>Technical Skill Sets</h1>
+      <div class="skills-intro">
+        <img class="skills-intro-photo" src="./img/aboutMe.jpeg" alt="See Yong Hong">
+        <div class="speech-card">
+          <p>
+            "I've always enjoyed turning ideas into something meaningful.
+            <br>
+            Here's a look at the tools, technologies, and skills I've
+            picked up over the years."
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <section class="skills-tree" aria-label="Interactive technical skills tree">
+      <div class="tree-root">
+        <button class="tree-root-button" id="tree-toggle" type="button" aria-expanded="true"
+          aria-controls="skill-tree-content projects-section">
+          <span class="tree-root-icon" aria-hidden="true">YH</span>
+          <span>
+            <span class="tree-root-label">Technical Skills</span>
+            <span class="tree-root-hint">Select to show or hide all branches</span>
+          </span>
+        </button>
+      </div>
+
+      <div class="skill-tree-content" id="skill-tree-content">
+        <div class="skill-branches" id="skill-branches">
+          <section class="skill-branch" aria-labelledby="branch-frontend-title">
+            <button class="branch-toggle" id="branch-frontend-title" type="button" aria-expanded="true"
+              aria-controls="skills-frontend">
+              <span><span class="branch-title">Web Development</span><span class="branch-count">7 skills</span></span>
+              <span class="branch-chevron" aria-hidden="true">⌄</span>
+            </button>
+            <div class="branch-skills" id="skills-frontend">
+              <button class="skill-node" type="button" data-skill="HTML"
+                data-detail="Building structured, semantic pages as part of web development projects."><i class="skill-logo devicon-html5-plain" aria-hidden="true"></i>HTML</button>
+              <button class="skill-node" type="button" data-skill="CSS"
+                data-detail="Styling web interfaces and creating responsive layouts."><i class="skill-logo devicon-css3-plain" aria-hidden="true"></i>CSS</button>
+              <button class="skill-node" type="button" data-skill="JavaScript"
+                data-detail="Adding interactive behavior to web pages and applications."><i class="skill-logo devicon-javascript-plain" aria-hidden="true"></i>JavaScript</button>
+              <button class="skill-node" type="button" data-skill="Responsive design"
+                data-detail="Designing layouts that adapt to different screen sizes and devices."><span class="skill-logo" aria-hidden="true">R</span>Responsive design</button>
+              <button class="skill-node" type="button" data-skill="MySQL"
+                data-detail="Database experience gained through full-stack and academic projects."><i class="skill-logo devicon-mysql-plain" aria-hidden="true"></i>MySQL</button>
+              <button class="skill-node" type="button" data-skill="Prisma"
+                data-detail="Worked with Prisma as part of database-backed application projects."><i class="skill-logo devicon-prisma-original" aria-hidden="true"></i>Prisma</button>
+              <button class="skill-node" type="button" data-skill="UI/UX design"
+                data-detail="Designed intuitive interfaces for multi-page and full-stack applications."><span class="skill-logo" aria-hidden="true">UX</span>UI/UX design</button>
+            </div>
+          </section>
+
+          <section class="skill-branch" aria-labelledby="branch-programming-title">
+            <button class="branch-toggle" id="branch-programming-title" type="button" aria-expanded="true"
+              aria-controls="skills-programming">
+              <span><span class="branch-title">Programming</span><span class="branch-count">4 skills</span></span>
+              <span class="branch-chevron" aria-hidden="true">⌄</span>
+            </button>
+            <div class="branch-skills" id="skills-programming">
+              <button class="skill-node" type="button" data-skill="Python"
+                data-detail="Used in programming projects and data analysis, including work with Pandas and NumPy."><i class="skill-logo devicon-python-plain" aria-hidden="true"></i>Python</button>
+              <button class="skill-node" type="button" data-skill="Java"
+                data-detail="Applied object-oriented programming concepts in class and project work."><i class="skill-logo devicon-java-plain" aria-hidden="true"></i>Java</button>
+              <button class="skill-node" type="button" data-skill="C#"
+                data-detail="A language explored through foundational programming and robotics lessons."><i class="skill-logo devicon-csharp-plain" aria-hidden="true"></i>C#</button>
+              <button class="skill-node" type="button" data-skill="Object-oriented programming"
+                data-detail="Practiced through school projects and application development."><span class="skill-logo" aria-hidden="true">{ }</span>Object-oriented programming</button>
+            </div>
+          </section>
+
+          <section class="skill-branch" aria-labelledby="branch-data-title">
+            <button class="branch-toggle" id="branch-data-title" type="button" aria-expanded="true"
+              aria-controls="skills-data">
+              <span><span class="branch-title">Data &amp; Analytics</span><span class="branch-count">5 skills</span></span>
+              <span class="branch-chevron" aria-hidden="true">⌄</span>
+            </button>
+            <div class="branch-skills" id="skills-data">
+              <button class="skill-node" type="button" data-skill="Power BI"
+                data-detail="Creating interactive dashboards to explore and communicate data insights."><span class="skill-logo" aria-hidden="true">BI</span>Power BI</button>
+              <button class="skill-node" type="button" data-skill="Power Query"
+                data-detail="Transforming and preparing datasets for analysis."><span class="skill-logo" aria-hidden="true">PQ</span>Power Query</button>
+              <button class="skill-node" type="button" data-skill="Pandas"
+                data-detail="Working with Python data libraries to transform and analyze datasets."><i class="skill-logo devicon-pandas-plain" aria-hidden="true"></i>Pandas</button>
+              <button class="skill-node" type="button" data-skill="NumPy"
+                data-detail="Using Python tools for numerical work in data analysis."><i class="skill-logo devicon-numpy-plain" aria-hidden="true"></i>NumPy</button>
+              <button class="skill-node" type="button" data-skill="Matplotlib"
+                data-detail="Visualizing data using Python."><i class="skill-logo devicon-matplotlib-plain" aria-hidden="true"></i>Matplotlib</button>
+            </div>
+          </section>
+
+          <section class="skill-branch" aria-labelledby="branch-foundations-title">
+            <button class="branch-toggle" id="branch-foundations-title" type="button" aria-expanded="true"
+              aria-controls="skills-foundations">
+              <span><span class="branch-title">Foundations &amp; Tools</span><span class="branch-count">3 skills</span></span>
+              <span class="branch-chevron" aria-hidden="true">⌄</span>
+            </button>
+            <div class="branch-skills" id="skills-foundations">
+              
+              <button class="skill-node" type="button" data-skill="Scratch"
+                data-detail="An early introduction to programming logic and event-driven development."><span class="skill-logo" aria-hidden="true">S</span>Scratch</button>
+              <button class="skill-node" type="button" data-skill="Micro:bit &amp; mBot"
+                data-detail="Explored programming and problem-solving through hands-on robotics projects."><span class="skill-logo" aria-hidden="true">mB</span>Micro:bit &amp; mBot</button>
+              <button class="skill-node" type="button" data-skill="Networking"
+                data-detail="Built a foundation in networking fundamentals during my studies."><span class="skill-logo" aria-hidden="true">NET</span>Networking</button>
+            </div>
+          </section>
+        </div>
+
+        <aside class="skill-detail skill-filter-status" aria-live="polite" aria-atomic="true">
+          <div>
+            <h2 id="project-results-count">
+                <span class="text-white-50 me-2">[See Yong Hong]'s</span>
+                Projects
+            </h2>
+            <p id="project-results-status">Select one or more skills to show projects that use any selected skill.</p>
+          </div>
+          <button class="clear-skill-filters" id="clear-skill-filters" type="button" hidden>Clear filters</button>
+        </aside>
+      </div>
+    </section>
+
+    <section class="projects-section" id="projects-section" aria-labelledby="projects-heading">
+      <div class="projects-heading">
+        <div>
+          <h2 id="projects-heading"> My Projects in practice</h2>
+          <p>Choose skills above to filter my projects using any selected skill.</p>
+        </div>
+      </div>
+
+      <div class="project-grid" id="project-grid" aria-live="polite"></div>
+      <p class="projects-empty" id="projects-empty" role="status" hidden>No projects match any selected skill. Try removing a skill tag.</p>
+    </section>
+
+    <dialog class="project-dialog" id="project-dialog" aria-labelledby="project-dialog-title">
+      <div class="project-dialog-header">
+        <button class="project-dialog-close" id="project-dialog-close" type="button" aria-label="Close project details">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <article class="project-dialog-content">
+        <p class="project-dialog-category" id="project-dialog-category"></p>
+        <h2 class="project-dialog-title" id="project-dialog-title"></h2>
+        <p class="project-dialog-summary" id="project-dialog-summary"></p>
+        <div id="project-dialog-cover"></div>
+        <p class="project-dialog-caption" id="project-dialog-caption"></p>
+        <div class="project-dialog-details">
+          <section>
+            <h3>Project overview</h3>
+            <p id="project-dialog-overview"></p>
+            <div id="project-dialog-approach-section">
+              <h3 class="mt-4">What I explored</h3>
+              <p id="project-dialog-approach"></p>
+            </div>
+          </section>
+          <aside class="project-dialog-skills">
+            <h3>Skills in this project</h3>
+            <div class="project-dialog-tags" id="project-dialog-skills"></div>
+          </aside>
+        </div>
+      </article>
+    </dialog>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./skills-tree.js"></script>
+  <script src="./project-details.js"></script>
 </body>
-
-  <script src="./index.js" type="text/javascript"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="./skills-chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-
-
-</HTML>
+</html>
