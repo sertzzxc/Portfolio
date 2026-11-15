@@ -40,6 +40,22 @@ document.addEventListener("DOMContentLoaded", () => {
   typeLoop(); // start loop
 
   let lastScrollY = window.scrollY;
+  const root = document.documentElement;
+  const scrollProgressBar = document.getElementById("scroll-progress");
+
+  function updateAmbientBackground() {
+    const maxScroll = root.scrollHeight - window.innerHeight;
+    const progress = maxScroll > 0 ? Math.min(window.scrollY / maxScroll, 1) : 0;
+
+    root.style.setProperty("--ambient-hue", 198 + progress * 24);
+    root.style.setProperty("--ambient-x", `${18 + progress * 64}%`);
+    root.style.setProperty("--ambient-y", `${24 + progress * 52}%`);
+    root.style.setProperty("--scroll-progress", progress);
+    scrollProgressBar.setAttribute("aria-valuenow", Math.round(progress * 100).toString());
+  }
+
+  updateAmbientBackground();
+  window.addEventListener("resize", updateAmbientBackground);
 
   // Shrink navbar on scroll
   window.addEventListener("scroll", function() {
@@ -49,20 +65,23 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       navbar.classList.remove("navbar-small");
     }
+
+    updateAmbientBackground();
   });
 
 
   const sections = document.querySelectorAll('.fade-section');
+  const fadeThreshold = 0.1;
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
+      if (entry.intersectionRatio >= fadeThreshold) {
         entry.target.classList.add('active');
       } else {
-        entry.target.classList.remove('active'); // remove for fade-out
+        entry.target.classList.remove('active');
       }
     });
-  }, { threshold: 0.1 }); // trigger when 20% of the section is visible
+  }, { threshold: fadeThreshold });
 
   sections.forEach(section => observer.observe(section));
   
