@@ -1,0 +1,117 @@
+.theme-toggle {
+  display: inline-grid;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  place-items: center;
+  margin: 0 0.5rem;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.theme-icon {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.theme-icon-moon {
+  display: none;
+}
+
+html[data-theme="light"] {
+  color-scheme: dark;
+  background: #30343b;
+}
+
+html[data-theme="light"] body {
+  isolation: isolate;
+  background: transparent !important;
+  color: #f5f6f7 !important;
+}
+
+html[data-theme="light"] body::before {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(125deg, #292d33, #454a52, #343941, #50545b);
+  background-size: 300% 300%;
+  animation: gray-theme-drift 24s ease-in-out infinite;
+  content: "";
+}
+
+@keyframes gray-theme-drift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+html[data-theme="light"] #navbar {
+  background: rgba(42, 46, 53, 0.94) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+html[data-theme="light"] #navbar .nav-link {
+  color: #f5f6f7 !important;
+}
+
+html[data-theme="light"] #navbar .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+html[data-theme="light"] .theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+html[data-theme="light"] .theme-icon-sun {
+  display: none;
+}
+
+html[data-theme="light"] .theme-icon-moon {
+  display: block;
+}
+
+html[data-theme="light"] #main {
+  background: transparent !important;
+  color: #f5f6f7 !important;
+}
+
+html[data-theme="light"] #about,
+html[data-theme="light"] #short-profile,
+html[data-theme="light"] #skills {
+  color: #f5f6f7 !important;
+}
+
+@media (max-width: 991.98px) {
+  .theme-toggle {
+    margin-left: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="light"] body::before {
+    animation: none;
+  }
+}
