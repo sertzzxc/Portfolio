@@ -1,4 +1,3 @@
-<HTML>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,15 +6,12 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>YH - My Portfolio</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="./vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <!-- Main CSS File -->
   <link href="./style.css" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-    }
-
     #welcomeMessage {
       background-color: #f8f9fa;
       /* Light background for the section */
@@ -38,72 +34,6 @@
     .card-body {
       text-align: center;
       padding: 30px;
-    }
-
-    /* Main Navbar */
-    #navbar {
-        transition: all 0.3s ease;
-        padding: 1.5rem 1.5rem;
-        font-size: 1rem;
-
-        border-radius: 20px;
-        margin: 15px 25px;
-
-        background: rgba(20, 20, 20, 0.95);
-        backdrop-filter: blur(12px);
-
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-    }
-
-    /* Small Navbar when scrolled */
-    #navbar.navbar-small {
-        padding: 0.5rem 1.5rem;
-        font-size: 0.9rem;
-
-        border-radius: 30px;
-        margin: 10px 35px;
-    }
-
-    /* Navbar Links */
-    .navbar-nav .nav-link {
-        color: #fff !important;
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s ease;
-
-        border-radius: 50px;
-        padding: 8px 18px !important;
-    }
-
-    /* Rounded underline */
-    .navbar-nav .nav-link::before {
-        content: "";
-        position: absolute;
-        bottom: 4px;
-        left: 20%;
-        width: 0;
-        height: 2px;
-        border-radius: 50px;
-        background-color: #fff;
-        transition: width 0.4s ease-in-out;
-    }
-
-    .navbar-nav .nav-link:hover::before {
-        width: 60%;
-    }
-
-    /* Hover */
-    .nav-item .nav-link:hover {
-        color: #fff !important;
-        background: rgba(255, 255, 255, 0.1);
-    }
-
-    /* Focus / Active */
-    .navbar-nav .nav-link:focus,
-    .navbar-nav .nav-link:active {
-        background-color: rgba(255, 255, 255, 0.15);
-        color: #fff !important;
-        outline: none;
     }
 
     .social-menu {
@@ -174,6 +104,41 @@
     .social-menu-panel a:focus-visible {
       background: rgba(255, 255, 255, 0.1);
       color: #fff;
+    }
+
+    .about-contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .about-contact-link {
+      display: inline-flex;
+      width: 44px;
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 50%;
+      color: #fff;
+      text-decoration: none;
+      transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .about-contact-link:hover,
+    .about-contact-link:focus-visible {
+      transform: translateY(-3px);
+      background-color: rgba(167, 216, 240, 0.16);
+      border-color: #a7d8f0;
+      color: #fff;
+      outline: none;
+    }
+
+    .about-contact-link svg {
+      width: 21px;
+      height: 21px;
+      fill: currentColor;
     }
 
 
@@ -579,9 +544,6 @@
 
     html {
       scroll-behavior: smooth;
-      /* smooth scrolling */
-      scroll-snap-type: y mandatory;
-      /* vertical snap */
       height: 100%;
       margin: 0;
       padding: 0;
@@ -612,11 +574,7 @@
     /* Optional: Body background */
     body {
       background-color: #000;
-      /* Black background */
       color: #fff;
-      /* Default white text */
-      scroll-snap-type: y mandatory;
-      /* make sections snap inside body */
       margin: 0;
       padding: 0;
     }
@@ -668,77 +626,193 @@
       /* clip detail cards so they don't overflow the viewport */
     }
 
-    #skills .education-quote-connector {
-      width: 2px;
-      height: 5rem;
-      margin: 0 auto;
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.25), rgba(216, 191, 255, 0.8));
+    #skills .timeline-line {
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 3px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.18);
+      transform: translateX(-50%);
     }
 
-    #skills .education-journey-quote-row {
+    #skills .timeline-progress-fill {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(to bottom, #a7d8f0, #d8bfff);
+      box-shadow: 0 0 12px rgba(167, 216, 240, 0.45);
+      transform: scaleY(var(--timeline-progress, 0));
+      transform-origin: top;
+    }
+
+    #skills .timeline-item.row {
+      margin-bottom: clamp(7rem, 12vh, 10rem) !important;
+    }
+
+    #skills .timeline-prompt {
+      display: block;
+      margin: 0.85rem 0 0;
+      padding: 0.65rem 0.75rem;
+      border: 0;
+      border-left: 2px solid #a7d8f0;
+      border-radius: 0.35rem;
+      background: rgba(167, 216, 240, 0.08);
+      color: #c9e8f7;
+      font-size: 0.9rem;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    #skills .timeline-prompt-button {
+      display: inline-flex;
+      width: auto;
+      max-width: 100%;
+      align-items: center;
+      margin-top: 0;
+      font-family: inherit;
+      font-size: 0.85rem;
+      text-align: left;
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    #skills .timeline-intro-demo .timeline-prompt-button {
+      margin-top: 1rem;
+    }
+
+    #skills .timeline-intro-tip {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+      padding: 0.85rem 1rem;
+      border: 1px solid rgba(167, 216, 240, 0.25);
+      border-left: 3px solid #a7d8f0;
+      border-radius: 0.5rem;
+      background: rgba(167, 216, 240, 0.08);
+      color: #cbd5e1;
+    }
+
+    #skills .timeline-intro-tip-label {
+      color: #a7d8f0;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    #skills .timeline-title-hint-card {
+      display: flex;
+      width: fit-content;
+      max-width: 100%;
+      align-items: center;
+      gap: 0.65rem;
+      border-left: 3px solid #a7d8f0;
+      background: rgba(167, 216, 240, 0.08);
+      color: #cbd5e1;
+    }
+
+    #skills .timeline-title-hint-icon {
+      flex: 0 0 auto;
+      color: #a7d8f0;
+      font-size: 1.1rem;
+    }
+
+    #skills .timeline-title-hint-card p {
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    #skills .timeline-title-toggle {
+      border: 1px solid rgba(167, 216, 240, 0.25);
+      cursor: pointer;
+      color: #cbd5e1;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    #skills .timeline-title-toggle:hover,
+    #skills .timeline-title-toggle:focus-visible {
+      border-color: #a7d8f0;
+      background: rgba(167, 216, 240, 0.14);
+    }
+
+    #skills .timeline-date-action {
       display: flex;
       align-items: center;
-      gap: clamp(1rem, 3vw, 2rem);
-      max-width: 46rem;
-      margin: 0 auto;
+      flex-wrap: wrap;
+      gap: 0.75rem;
     }
 
-    #skills .education-quote-image {
-      display: block;
-      width: clamp(6rem, 15vw, 9rem);
-      aspect-ratio: 4 / 3;
-      flex: 0 0 auto;
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      border-radius: 0.75rem;
-      object-fit: cover;
-      object-position: center 25%;
+    #skills .col-6.text-end .timeline-date-action {
+      flex-direction: row-reverse;
+      justify-content: flex-start;
     }
 
-    #skills .education-journey-quote {
-      position: relative;
-      flex: 1;
-      padding: 1.75rem clamp(1.25rem, 4vw, 2.5rem);
-      border: 1px solid white;
-      border-radius: 1rem;
-      box-shadow: 0 0 24px rgba(216, 191, 255, 0.1);
-      color: white;
-      font-family: inherit;
-      font-size: 1rem;
-      font-style: normal;
-      line-height: 1.5;
-      text-align: left;
-    }
-
-    #skills .education-journey-quote::before {
-      position: absolute;
-      top: 50%;
-      left: -0.75rem;
-      transform: translateY(-50%);
-      border-top: 0.65rem solid transparent;
-      border-bottom: 0.65rem solid transparent;
-      border-right: 0.75rem solid rgba(13, 15, 20, 0.96);
-      content: "";
-    }
-
-    #skills .education-journey-quote p {
+    #skills .timeline-date-action h5 {
       margin: 0;
     }
 
-    @media (max-width: 575.98px) {
-      #skills .education-journey-quote-row {
-        align-items: stretch;
-        flex-direction: column;
+    #skills .timeline-prompt-button:hover,
+    #skills .timeline-prompt-button:focus-visible {
+      border-left-color: #d8bfff;
+      background: rgba(216, 191, 255, 0.14);
+    }
+
+    #skills .timeline-read-more {
+      color: #AEC6CF;
+      text-decoration: underline;
+      text-decoration-color: #AEC6CF;
+      text-underline-offset: 0.15em;
+    }
+
+    #skills .timeline-internship-link {
+      color: #d8bfff;
+      text-decoration: underline;
+      text-decoration-color: #d8bfff;
+      text-underline-offset: 0.15em;
+    }
+
+    #skills .timeline-overview[hidden],
+    #skills .timeline-reflection[hidden] {
+      display: none;
+    }
+
+    #skills .timeline-reflection .reflection-section {
+      color: #cbd5e1;
+      margin: 0;
+    }
+
+    #skills .timeline-reflection .reflection-highlight {
+      color: #a7d8f0;
+    }
+
+    #skills .timeline-reflection .reflection-section + .reflection-section {
+      margin-top: 0.85rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    #skills .timeline-panel.is-entering {
+      animation: timeline-panel-enter 280ms ease-out both;
+    }
+
+    @keyframes timeline-panel-enter {
+      from {
+        opacity: 0;
+        transform: translateY(0.5rem);
       }
 
-      #skills .education-quote-image {
-        align-self: center;
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
+    }
 
-      #skills .education-journey-quote::before {
-        top: -0.65rem;
-        left: 50%;
-        transform: translateX(-50%) rotate(90deg);
-      }
+    #skills .timeline-item.reflection-open .detail-card {
+      display: none !important;
     }
 
     .timeline-item {
@@ -837,9 +911,16 @@
   width: 14px;
   height: 14px;
   background-color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.8);
   border-radius: 50%;
+  z-index: 1;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
 
-  z-index: 1; 
+.timeline-dot.is-passed {
+  border-color: #d8bfff;
+  background-color: #a7d8f0;
+  box-shadow: 0 0 0 4px rgba(167, 216, 240, 0.18), 0 0 14px rgba(167, 216, 240, 0.55);
 }
 
 
@@ -874,11 +955,6 @@
     }
 
     @media (max-width: 767.98px) {
-      html,
-      body {
-        scroll-snap-type: y proximity;
-      }
-
       #navbar,
       #navbar.navbar-small {
         margin: 0.5rem 0.75rem;
@@ -913,7 +989,7 @@
 
       #about > h1,
       #short-profile #profile-cards-title,
-      #skills .container > h1 {
+      #skills .timeline-heading-row h1 {
         font-size: clamp(2rem, 7.5vw, 2.75rem) !important;
       }
 
@@ -927,15 +1003,14 @@
 
       #skills .timeline-line {
         left: 0.75rem !important;
-        width: 0;
-        height: 100% !important;
+        width: 3px;
       }
 
       #skills .timeline-item.row {
         display: flex;
         flex-direction: column;
         margin-right: 0;
-        margin-bottom: 2.5rem !important;
+        margin-bottom: 5rem !important;
         margin-left: 0;
         --bs-gutter-x: 0;
       }
@@ -947,6 +1022,11 @@
         text-align: left !important;
       }
 
+      #skills .timeline-item.row > .col-6.text-end .timeline-date-action {
+        flex-direction: row;
+        justify-content: flex-start;
+      }
+
       #skills .timeline-item.row > .col-6:empty {
         display: none;
       }
@@ -955,6 +1035,10 @@
         margin: 0 0 0.75rem;
         padding: 0.5rem 0.75rem;
         font-size: 1rem;
+      }
+
+      #skills .timeline-item .timeline-year .timeline-date-action h5 {
+        margin: 0;
       }
 
       #skills .timeline-item .timeline-dot {
@@ -994,6 +1078,288 @@
       }
     }
 
+    #whats-next {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      background: transparent !important;
+      color: #fff;
+      font-family: "Poppins", sans-serif;
+    }
+
+    #whats-next .whats-next-container {
+      width: min(100%, 1080px);
+    }
+
+    #whats-next .whats-next-eyebrow,
+    #whats-next .project-showcase-label {
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    #whats-next .whats-next-heading {
+      margin: 0.65rem 0 0.75rem;
+      font-size: clamp(2.25rem, 6vw, 3.5rem);
+      font-weight: 700;
+    }
+
+    #whats-next .whats-next-board {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 4vw, 2.5rem);
+      border: 1px solid #fff;
+      border-radius: 1.25rem;
+      background: #212529;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.25);
+      text-align: left;
+    }
+
+    #whats-next .whats-next-quote {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(150px, 220px);
+      align-items: center;
+      gap: 1.5rem;
+      margin: 0 0 2rem;
+      padding: 1.5rem;
+      border-left: 3px solid #a7d8f0;
+      border-radius: 0.75rem;
+      background: rgba(167, 216, 240, 0.08);
+    }
+
+    #whats-next .whats-next-quote blockquote {
+      position: relative;
+      margin: 0;
+      padding-left: 1.25rem;
+      color: #fff;
+      font-size: clamp(1rem, 2.4vw, 1.25rem);
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    #whats-next .whats-next-quote blockquote::before {
+      position: absolute;
+      top: -0.75rem;
+      left: -0.1rem;
+      color: #fff;
+      content: "“";
+      font-size: 2.5rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    #whats-next .whats-next-quote-image {
+      display: block;
+      width: 100%;
+      height: 190px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 0.65rem;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+
+    #whats-next .project-showcase {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+      background: transparent;
+      font-family: inherit;
+      text-align: left;
+    }
+
+    #whats-next .project-showcase-copy {
+      padding: 1rem 1.5rem 1rem 0;
+    }
+
+    #whats-next .project-showcase-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.7rem;
+      border: 1px solid rgba(167, 216, 240, 0.22);
+      border-radius: 999px;
+      background: rgba(167, 216, 240, 0.08);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    #whats-next .project-showcase-status::before {
+      width: 0.45rem;
+      height: 0.45rem;
+      border-radius: 50%;
+      background: #a7d8f0;
+      content: "";
+    }
+
+    #whats-next .project-showcase-title {
+      margin: 1.25rem 0 0.75rem;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 700;
+    }
+
+    #whats-next .project-showcase-description {
+      color: #fff;
+      line-height: 1.75;
+    }
+
+    #whats-next .project-showcase-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1.25rem 0 1.75rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    #whats-next .project-showcase-tech li {
+      padding: 0.35rem 0.65rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      color: #fff;
+      font-size: 0.78rem;
+    }
+
+    #whats-next .project-showcase-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #fff;
+      font-weight: 700;
+      text-decoration: underline;
+      text-decoration-color: #fff;
+      text-underline-offset: 0.2em;
+    }
+
+    #whats-next .project-showcase-link:focus-visible {
+      outline: 2px solid #a7d8f0;
+      outline-offset: 4px;
+    }
+
+    #whats-next .project-showcase-visual {
+      position: relative;
+      min-height: 340px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 0.75rem;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(167, 216, 240, 0.2), transparent 55%),
+        linear-gradient(145deg, rgba(167, 216, 240, 0.08), rgba(216, 191, 255, 0.08));
+    }
+
+    #whats-next .upcoming-projects-heading {
+      margin: 0 0 1.25rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    #whats-next .next-project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    #whats-next .next-project-pin {
+      position: relative;
+      min-height: 170px;
+      padding: 1.25rem;
+      border: 1px solid #fff;
+      border-radius: 0.85rem;
+      background: rgba(255, 255, 255, 0.04);
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    #whats-next .next-project-pin::before {
+      position: absolute;
+      top: -0.45rem;
+      left: 1.25rem;
+      width: 0.9rem;
+      height: 0.9rem;
+      border: 2px solid #212529;
+      border-radius: 50%;
+      background: #a7d8f0;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+      content: "";
+    }
+
+    #whats-next .next-project-pin:hover {
+      transform: translateY(-4px);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    #whats-next .next-project-number {
+      display: block;
+      margin-bottom: 0.75rem;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+    }
+
+    #whats-next .next-project-pin h4 {
+      margin: 0 0 0.5rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    #whats-next .next-project-pin p {
+      margin: 0;
+      color: #fff;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    #whats-next .project-showcase-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 340px;
+      object-fit: cover;
+      object-position: right center;
+    }
+
+    @media (max-width: 767.98px) {
+      #whats-next .whats-next-quote {
+        grid-template-columns: 1fr;
+      }
+
+      #whats-next .project-showcase {
+        grid-template-columns: 1fr;
+      }
+
+      #whats-next .project-showcase-copy {
+        padding: 0 0 1.5rem;
+      }
+
+      #whats-next .project-showcase-visual {
+        grid-row: 1;
+      }
+
+      #whats-next .next-project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #whats-next .whats-next-quote-image {
+        width: min(100%, 320px);
+        height: 220px;
+        justify-self: center;
+      }
+
+      #whats-next .project-showcase-visual {
+        min-height: 250px;
+      }
+
+      #whats-next .project-showcase-image {
+        min-height: 250px;
+      }
+    }
+
   </style>
   <link href="./theme.css" rel="stylesheet">
   <script src="./theme.js"></script>
@@ -1008,7 +1374,7 @@
   <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-1">
     <div class="container-fluid">
       <!-- Brand -->
-      <a class="navbar-brand fw-bold text-primary fs-4" href="#">SYH19</a>
+      <a class="navbar-brand fw-bold text-primary fs-4" href="#main">SYH19</a>
 
       <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light mode"
         title="Switch to light mode" aria-pressed="false">
@@ -1045,19 +1411,19 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link text-white mx-2" href="./index.html#main">Dashboard</a>
+            <a class="nav-link text-white mx-2" href="./index.html#main"><span style="color: #a7d8f0; font-weight: bold;">01. </span>Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white mx-2" href="./index.html#about">About Me</a>
+            <a class="nav-link text-white mx-2" href="./projects.html"><span style="color: #a7d8f0; font-weight: bold;">02. </span>My Projects</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white mx-2" href="./technicalSkills.html">Skills</a>
+            <a class="nav-link text-white mx-2" href="./sports.html"><span style="color: #a7d8f0; font-weight: bold;">03. </span>Co-Curricular Activities</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white mx-2" href="./index.html#skills">Projects</a>
+            <a class="nav-link text-white mx-2" href="./sports.html"><span style="color: #a7d8f0; font-weight: bold;">04. </span>My Achievements</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white mx-2" href="./sports.html">Sports</a>
+            <a class="nav-link text-white mx-2" href="#internship"><span style="color: #d8bfff; font-weight: bold;">Internship</span></a>
           </li>
         </ul>
       </div>
@@ -1143,6 +1509,32 @@
         <!-- RIGHT: Image -->
         <div class="col-md-5 text-center mt-4 mt-md-0">
           <img src="./img/national.png" alt="[See Yong Hong]" class="img-fluid rounded about-image">
+          <div class="about-contact-links" aria-label="Contact links">
+            <a class="about-contact-link" href="https://github.com/sertzzxc" target="_blank"
+              rel="noopener noreferrer" aria-label="Visit See Yong Hong's GitHub profile" title="GitHub">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.71.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .08 1.53 1.05 1.53 1.05.9 1.57 2.35 1.12 2.92.86.09-.66.35-1.12.64-1.38-2.22-.26-4.56-1.13-4.56-5.04 0-1.11.39-2.02 1.03-2.74-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.4 9.4 0 0 1 12 6.87c.85 0 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.74 0 3.92-2.34 4.78-4.57 5.03.36.32.68.94.68 1.9 0 1.38-.01 2.49-.01 2.83 0 .27.18.59.69.49A10.23 10.23 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z"/>
+              </svg>
+            </a>
+            <a class="about-contact-link" href="https://www.linkedin.com/in/seeyonghong/" target="_blank"
+              rel="noopener noreferrer" aria-label="Visit See Yong Hong's LinkedIn profile" title="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.89 1.63-1.85 3.37-1.85 3.61 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.02H3.56V9h3.56v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0Z"/>
+              </svg>
+            </a>
+            <a class="about-contact-link" href="mailto:seeyh06@gmail.com"
+              aria-label="Email See Yong Hong" title="Email">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 3.2-8 5-8-5V6l8 5 8-5v1.2Z"/>
+              </svg>
+            </a>
+            <a class="about-contact-link" href="tel:+6582017958"
+              aria-label="Call See Yong Hong" title="Phone">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6.62 10.79a15.53 15.53 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z"/>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -1152,11 +1544,11 @@
     aria-labelledby="profile-cards-title">
     <div class="container">
       <h1 id="profile-cards-title" class="fw-bold mb-5" style="font-size: 3rem;">
-        <span style="color: #a7d8f0; font-weight: bold;">Beyond the Code:</span> My Work &amp; Passions
+        <span style="color: #a7d8f0; font-weight: bold;">Code</span>, <span style="color: #FDFD96; font-weight: bold;">Competition </span>& <span style="color: #E58BA8; font-weight: bold;">Everything In Between. </span>
       </h1>
 
       <div class="profile-card-grid">
-        <a class="profile-card profile-card-projects" href="./technicalSkills.html#projects-section"
+        <a class="profile-card profile-card-projects" href="./projects.html"
           aria-label="Explore my projects">
           <img class="profile-card-image" src="./img/Projects/Projects Sample Img.png" alt="">
           <span class="profile-card-mark" aria-hidden="true">&lt;/&gt;</span>
@@ -1167,7 +1559,7 @@
           </div>
         </a>
 
-        <a class="profile-card profile-card-skills" href="./technicalSkills.html"
+        <a class="profile-card profile-card-skills" href="./projects.html"
           aria-label="Explore my technical skills">
           <img class="profile-card-image" src="./img/Projects/Skills Snapshot.png" alt="">
           <div class="profile-card-content">
@@ -1241,7 +1633,7 @@
 
       <a href="#skills" class="next-preview-link text-decoration-none mt-4">
         <div class="next-preview">
-          <h4>Up Next:<span style="color: #DB5856; font-weight: bold;"> My Technical Education</span></h4>
+          <h4>Up Next:<span style="color: #DB5856; font-weight: bold;"> My Technical Experiences</span></h4>
           <p>Find out more about my Technical Journey!</p>
           <span class="scroll-down">↓</span>
         </div>
@@ -1252,33 +1644,63 @@
   </section>
 
 
-  <section id="skills" class="bg-dark text-white py-5 fade-section">
-    <div class="container">
-      <h1 class="fw-bold mb-5" style="font-size: 3rem;"><span style="color: #DB5856; font-weight: bold;">My Technical Educations</span></h1>
+    <section id="skills" class="bg-dark text-white py-5 fade-section">
+      <div class="container">
+        <div class="timeline-heading-row d-flex flex-wrap align-items-center gap-4 mb-5">
+          <h1 class="fw-bold mb-0" style="font-size: 3rem;">
+            <span style="color: #DB5856; font-weight: bold;">My Technical Experiences</span>
+          </h1>
+          <button id="timeline-reflections-toggle" type="button"
+            class="card bg-dark border-secondary px-3 py-2 timeline-title-hint-card timeline-title-toggle"
+            aria-expanded="false">
+            <i class="bi bi-lightbulb timeline-title-hint-icon" aria-hidden="true"></i>
+            <span class="fw-italic">Click this to reveal some of the personal reflections I've had over the years!</span>
+          </button>
+        </div>
+
+      <div class="container">
 
       <!-- Timeline -->
       <div class="timeline position-relative">
 
         <!-- Line in the middle -->
-        <div class="timeline-line position-absolute start-50 top-0 h-100 border-start border-white opacity-25"></div>
+        <div class="timeline-line" aria-hidden="true">
+          <span class="timeline-progress-fill"></span>
+        </div>
 
         <!-- Timeline Item 1 -->
         <div class="timeline-item row align-items-center mb-5">
           <div class="col-6 text-end">
             <div class="card bg-dark text-white border-white p-3 d-inline-block mb-3">
-              <h5 class="fw-bold">Childhood Robotics Lessons</h5>
-              <p>Basic fundamental skills: Scratch, mBot, HTML, JavaScript, C#</p>
-              <span class="hover-hint">Hover to learn more ←</span>
-
+              <div id="childhood-card-content">
+                <div class="timeline-overview timeline-panel">
+                  <h5 class="fw-bold">Roboto Coding Academy</h5>
+                  <p>Developed fundamental technical skills in <strong>Scratch</strong>, <strong>HTML</strong>, <strong>JavaScript</strong>, and <strong>mBot robotics</strong> while strengthening programming logic and event-driven development.</p>
+                  <span class="hover-hint">Hover to learn more ←</span>
+                </div>
+                <div class="timeline-reflection timeline-panel" hidden>
+                  <h5 class="fw-bold">Roboto Coding Academy</h5>
+                  <p class="reflection-section">
+                    This was where <strong class="reflection-highlight">curiosity became hands-on learning</strong>. When I was in Primary 3, an opportunity to learn robotics through fundamental Mbot programming and Scratch coding sparked my interest in technology at Roboto Coding Academy Singapore.
+                  </p>
+                  <p class="reflection-section">
+                    Through these lessons, I developed strong <strong class="reflection-highlight">programming logic and event-driven development skills</strong>, which laid the foundation for my future exploration of web development using HTML and JavaScript.
+                  </p>
+                  <p class="reflection-section">
+                    This then fueled a decision to pursue a <strong class="reflection-highlight">career in technology</strong>, leading me to further explore programming expanding my skillset to widen the range of technologies I can utilise to solve problems and create meaningful digital experiences.
+                  </p>
+                </div>
+              </div>
             </div>
             <div class="card detail-card bg-secondary text-white p-3 position-absolute">
-              <h6 class="fw-bold">My Childhood Technology Experience</h6>
+              <h6 class="fw-bold">My Roboto Coding Academy Experience</h6>
               <p>
                 Developed strong <strong>programming logic</strong> and <strong>event-driven development</strong> skills
                 through hands-on robotics projects with <strong>mBot</strong>.
                 Built foundational coding knowledge using <strong>Scratch</strong>, then advanced to
                 <strong>HTML</strong> and <strong>JavaScript</strong> for <em>web development projects</em>.
-                <a href="./technicalSkills.html" target="_blank" class="text-primary fw-bold ms-2">Read More →</a>
+              </p>
+                <a href="./projects.html" class="timeline-read-more fw-bold ms-2">Read More →</a>
             </div>
           </div>
            <!-- CENTER DOT -->
@@ -1287,7 +1709,14 @@
           <!-- RIGHT: Time Period -->
           <div class="col-6">
             <div class="timeline-year text-start">
-              <h5 class="fw-bold">2015 – 2019</h5>
+              <div class="timeline-date-action">
+                <h5 class="fw-bold">2015 – 2019</h5>
+                <button class="timeline-prompt timeline-prompt-button" type="button"
+                  aria-controls="childhood-card-content" aria-expanded="false"
+                  data-prompt="Why did I start?">
+                  <strong>Why did I start?</strong>
+                </button>
+              </div>
             </div>
           </div>
           <div class="col-6"></div>
@@ -1298,20 +1727,41 @@
 
           <!-- LEFT: Time Period -->
           <div class="col-6 text-end">
-            <div class="timeline-year d-inline-block">
-              <h5 class="fw-bold">2019 – 2022</h5>
+            <div class="timeline-year">
+              <div class="timeline-date-action">
+                <h5 class="fw-bold">2019 – 2022</h5>
+                <button class="timeline-prompt timeline-prompt-button" type="button"
+                  aria-controls="secondary-card-content" aria-expanded="false"
+                  data-prompt="Is Technology my future?">
+                  Is Technology my future?
+                </button>
+              </div>
             </div>
           </div>
 
           <!-- RIGHT: Card -->
           <div class="col-6 text-start">
             <div class="card bg-dark text-white border-white p-3 d-inline-block mb-3">
-              <h5 class="fw-bold">Secondary School Learning</h5>
-              <p>
-                Gained hands-on experience with <strong>object-oriented programming</strong>
-                through tiny class projects.
-              </p>
-              <span class="hover-hint">Hover to learn more →</span>
+              <div id="secondary-card-content">
+                <div class="timeline-overview timeline-panel">
+                  <h5 class="fw-bold">Secondary School Learning</h5>
+                  <p>
+                    Gained hands-on experience with <strong>object-oriented programming</strong>
+                    through tiny class projects.
+                  </p>
+                  <span class="hover-hint">Hover to learn more →</span>
+                </div>
+                <div class="timeline-reflection timeline-panel" hidden>
+                  <h5 class="fw-bold">Secondary School Learning</h5>
+                  <p class="reflection-section">
+                    This was a time where I was only able to do small projects during the <strong class="reflection-highlight">small gaps of free time</strong> I had between my schoolwork. It was also a time where all students had to decide their path after secondary school.
+                  </p>
+                  <p class="reflection-section">
+                    After spending 4 years just studying subjects that I had minimal interest in, I realised that I enjoyed <strong class="reflection-highlight">doing things that I was passionate about</strong>—in my case, <strong class="reflection-highlight">expanding my technical expertise and building passion projects</strong> like this website. Hence, I decided to take the leap and pursue a <strong class="reflection-highlight">diploma in Fullstack Development at Singapore Polytechnic</strong> rather than continuing on to Junior College.
+                  </p>
+
+                </div>
+              </div>
             </div>
 
             <div class="card detail-card bg-secondary text-white p-3 position-absolute">
@@ -1321,7 +1771,7 @@
                 and collaborate in a final project using the Microbit to develop a
                 <strong>sustainability-focused solution</strong>.
               </p>
-              <a href="./technicalSkills.html" target="_blank" class="text-primary fw-bold ms-2">Read More →</a>
+              <a href="./projects.html" class="timeline-read-more fw-bold ms-2">Read More →</a>
             </div>
           </div>
 
@@ -1334,12 +1784,30 @@
         <div class="timeline-item row align-items-center mb-5">
           <div class="col-6 text-end">
             <div class="card bg-dark text-white border-white p-3 d-inline-block">
-              <h5 class="fw-bold"><span style="color: #DB5856; font-weight: bold;">Singapore Polytechnic Diploma</span></h5>
-              <p> Specialised in Fullstack Development using <strong>HTML</strong>, <strong>JavaScript</strong>, and
-                <strong>Java</strong>, with hands-on experience in database maanagement via <strong>MySQL</strong> and
-                <strong>Prisma</strong>. Gained skills in <strong>UI/UX Design</strong> and developed a solid foundation
-                in <strong>Networking Fundamentals</strong>.</p>
-                <span class="hover-hint">Hover to learn more ←</span>
+              <div id="diploma-card-content">
+                <div class="timeline-overview timeline-panel">
+                  <h5 class="fw-bold"><span style="color: #DB5856; font-weight: bold;">Singapore Polytechnic Diploma</span></h5>
+                  <p>Specialised in Software Engineering using <strong>HTML</strong>, <strong>JavaScript</strong>, and
+                    <strong>Java</strong>, with hands-on experience in database management via <strong>MySQL</strong> and
+                    <strong>Prisma</strong>. Gained skills in <strong>UI/UX Design</strong> and developed a solid foundation
+                    in <strong>Networking Fundamentals</strong>.</p>
+                  <span class="hover-hint">Hover to learn more ←</span>
+                </div>
+                <div class="timeline-reflection timeline-panel" hidden>
+                  <h5 class="fw-bold"><span style="color: #DB5856; font-weight: bold;">Singapore Polytechnic Diploma</span></h5>
+                  <div>
+                    <p class="reflection-section">
+                      During my first year of polytechnic, I was truly taken aback. I was exposed to a <strong class="reflection-highlight">wide range of technologies and concepts</strong>, from <strong class="reflection-highlight">front-end and back-end development to database management and UI/UX design</strong>. This was a <strong class="reflection-highlight">huge step up</strong> from my original experience at Roboto.
+                    </p>
+                    <p class="reflection-section">
+                      It was through this experience of being "taken aback" that I realised how much I enjoyed <strong class="reflection-highlight">learning and exploring new technologies</strong>. This period of growth not only strengthened my <strong class="reflection-highlight">technical skills</strong>, but also deepened my understanding of the <strong class="reflection-highlight">software development lifecycle</strong> and the importance of <strong class="reflection-highlight">user-centric design</strong>.
+                    </p>
+                    <p class="reflection-section">
+                      I also learned that <strong class="reflection-highlight">technology never stands still</strong>. Throughout my time at SP, I was constantly challenged to <strong class="reflection-highlight">adapt and learn</strong>, especially as peers increasingly used AI tools to support their work. This experience instilled in me a mindset of <strong class="reflection-highlight">continuous learning and adaptability</strong>, which I believe are crucial traits for an aspiring software engineer.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="card detail-card bg-secondary text-white p-3 position-absolute">
               <h6 class="fw-bold">My Polytechnic Experience</h6>
@@ -1351,7 +1819,7 @@
                 <strong>RESTful APIs</strong>, and <strong>fullstack applications</strong>.
 
               </p>
-              <a href="./technicalSkills.html" target="_blank" class="text-primary fw-bold ms-2">Read More →</a>
+              <a href="./projects.html" class="timeline-read-more fw-bold ms-2">Read More →</a>
             </div>
           </div>
           <!-- CENTER DOT -->
@@ -1360,7 +1828,14 @@
           <!-- RIGHT: Time Period -->
           <div class="col-6">
             <div class="timeline-year text-start">
-              <h5 class="fw-bold">2023 – 2026</h5>
+              <div class="timeline-date-action">
+                <h5 class="fw-bold">2023 – 2026</h5>
+                <button class="timeline-prompt timeline-prompt-button" type="button"
+                  aria-controls="diploma-card-content" aria-expanded="false"
+                  data-prompt="How can I turn ideas into complete software?">
+                  How can I turn ideas into complete software?
+                </button>
+              </div>
             </div>
           </div>
           <div class="col-6"></div>
@@ -1369,16 +1844,39 @@
         <!-- Timeline Item 4 -->
         <div class="timeline-item row align-items-center mb-5">
           <div class="col-6 text-end">
-            <div class="timeline-year d-inline-block">
-              <h5 class="fw-bold">2023 – 2025</h5>
+            <div class="timeline-year">
+              <div class="timeline-date-action">
+                <h5 class="fw-bold">2023 – 2025</h5>
+                <button class="timeline-prompt timeline-prompt-button" type="button"
+                  aria-controls="data-ai-card-content" aria-expanded="false"
+                  data-prompt="Is Software Engineering Really all I wanted to do?">
+                  Is Software Engineering Really all I wanted to do?
+                </button>
+              </div>
             </div>
           </div>
           
           <div class="col-6 text-start">
             <div class="card bg-dark text-white border-white p-3 d-inline-block">
-              <h5 class="fw-bold"><span style="color: #DB5856; font-weight: bold;">Data & Artificial Intelligence Certificate</span></h5>
-              <p>Building responsive layouts, semantic HTML, and modern CSS animations.</p>
-              <span class="hover-hint">Hover to learn more →</span>
+              <div id="data-ai-card-content">
+                <div class="timeline-overview timeline-panel">
+                  <h5 class="fw-bold"><span style="color: #DB5856; font-weight: bold;">Data & Artificial Intelligence Certificate</span></h5>
+                  <p>Turning raw data into meaningful insights through <strong>data transformation</strong>, <strong>Python analytics</strong>, and <strong>interactive visualisations</strong>.</p>
+                  <span class="hover-hint">Hover to learn more →</span>
+                </div>
+                <div class="timeline-reflection timeline-panel" hidden>
+                  <h5 class="fw-bold"><span style="color: #DB5856; font-weight: bold;">Data & Artificial Intelligence Certificate</span></h5>
+                  <p class="reflection-section">
+                    This certificate program started as a <strong class="reflection-highlight">curiosity about data and artificial intelligence</strong>. During my first year, as part of a five-module elective program, I pursued a <strong class="reflection-highlight">Certificate in Data Analysis & Artificial Intelligence</strong>.
+                  </p>
+                  <p class="reflection-section">
+                    In all honesty, I initially chose this certificate because AI sounded <strong class="reflection-highlight">next-generation</strong> and could potentially become a career path for me. However, as I explored the modules, I became increasingly fascinated by <strong class="reflection-highlight">the power of data and how it can be transformed into actionable insights</strong>.
+                  </p>
+                  <p class="reflection-section">
+                    A turning point for me was working with <strong class="reflection-highlight">real-world datasets from gov.sg</strong>. I applied <strong class="reflection-highlight">data transformation techniques</strong> using Power Query and Python libraries such as Pandas and NumPy. I also created <strong class="reflection-highlight">interactive dashboards with Power BI</strong> and visualisations with Matplotlib. This hands-on experience strengthened my understanding of data analysis and showed me the power of <strong class="reflection-highlight">telling stories through data</strong>.
+                  </p>
+                </div>
+              </div>
             </div>
               <div class="card detail-card bg-secondary text-white p-3 position-absolute">
                 <h6 class="fw-bold">My Certificate Experience</h6>
@@ -1386,7 +1884,7 @@
                   I was given the opportunity to work with real-world datasets,
                   applying <strong>data transformation</strong> techniques using <strong>Power Query</strong> and Python libraries such as <strong>Pandas</strong> and <strong>NumPy</strong>. I also created interactive dashboards with <strong>Power BI</strong> and generated visualizations using <strong>Matplotlib</strong>. Gaining practical experience in <strong>data-driven decision-making</strong>.
                 </p>
-                <a href="./technicalSkills.html" target="_blank" class="text-primary fw-bold ms-2"><span style="color: #AEC6CF; font-weight: bold;"></span>Read More →</a>
+                <a href="./projects.html" class="timeline-read-more fw-bold ms-2">Read More →</a>
               </div>
 
           </div>
@@ -1395,19 +1893,51 @@
         </div>
 
         <!-- Timeline Item 5 -->
-        <div class="timeline-item row align-items-center mb-5">
+        <div id="internship" class="timeline-item row align-items-center mb-5">
           <div class="col-6 text-end">
             <div class="card bg-dark text-white border-white p-3 d-inline-block internship-card">
-              <h5 class="fw-bold"> <span style="color: #d8bfff; font-weight: bold;">Internship @ Synapxe</span> </h5>
-              <p>Worked on various projects involving <strong>data analysis</strong> and <strong>process automation</strong> for the Automated Identity Access Management Team @ Synapxe.</p>
-              <span class="hover-hint"><span style="color: #d8bfff; font-weight: bold;">Hover to explore my internship journey ←</span></span>
+              <div id="internship-card-content">
+                <div class="timeline-overview timeline-panel">
+                  <h5 class="fw-bold"><span style="color: #d8bfff; font-weight: bold;">Internship @ Synapxe</span></h5>
+                  <p>
+                    Contributed to <strong>data engineering</strong> and
+                    <strong>process automation</strong> initiatives within Synapxe's
+                    <strong>Automated Identity Access Management (AIAM)</strong> team.
+                    During which, I leveraged <strong>AWS Lambda</strong> and <strong>Amazon S3</strong>
+                    to support cloud-based data processing and transformation workflows
+                    involving datasets exceeding <strong>1 million records</strong>.
+                    Developed automated daily reporting processes using
+                    <strong>Microsoft Access</strong> and <strong>VBScript</strong>,
+                    generating data-driven reports for multiple healthcare institutions
+                    while improving reporting efficiency and reducing manual processing.
+                  </p>
+                  <span class="hover-hint"><span style="color: #d8bfff; font-weight: bold;">Hover to explore my internship journey ←</span></span>
+                </div>
+                <div class="timeline-reflection timeline-panel" hidden>
+                  <h5 class="fw-bold"><span style="color: #d8bfff; font-weight: bold;">Internship @ Synapxe</span></h5>
+                  <p class="reflection-section">
+                    As part of my diploma program, I undertook a <strong class="reflection-highlight">one-year internship</strong> with Synapxe's <strong class="reflection-highlight">Automated Identity Access Management team</strong>. This gave me first-hand experience of how identity management is handled across <strong class="reflection-highlight">Singapore's healthcare system</strong>, and how <strong class="reflection-highlight">simple process improvements can make a meaningful difference</strong> in a high-stakes environment.
+                  </p>
+                  <p class="reflection-section">
+                    Throughout the year, I worked with personnel from <strong class="reflection-highlight">Deloitte, NHG, NUHS, MOH</strong>, and other organisations. This opened my eyes to the <strong class="reflection-highlight">scale of collaboration required</strong> to manage identity access across Singapore's healthcare system.
+                  </p>
+                  <p class="reflection-section">
+                    As an intern, I initially expected to handle simple tasks such as data entry or basic data analysis. Instead, the <strong class="reflection-highlight">support and trust of my Associate Directors and Directors</strong> gave me opportunities to <strong class="reflection-highlight">take charge of projects</strong>, improve everyday operations, and put my <strong class="reflection-highlight">technical creativity to practical use</strong>.
+                  </p>
+                  <p class="reflection-section">
+                    I deeply respect the important work done by healthcare professionals, and I am grateful to have <strong class="reflection-highlight">contributed in my own way through my technical skillset</strong>. Whether a contribution is small or large, my supervisors' trust gave me the confidence to <strong class="reflection-highlight">take ownership and make a real impact</strong> on the healthcare system.
+                  </p>
+                </div>
+              </div>
             </div>
             <div class="card detail-card bg-secondary text-white p-3 position-absolute">
-              <h6 class="fw-bold">Explore My Internship Journey</h6>
+              <h6 class="fw-bold"><span style="color: #d8bfff; font-weight: bold;">Internship @ Synapxe</span></h6>
               <p>
-                During my internship with Synapxe's Automated Identity Access Management team, I leveraged data analytics.
+                What if Power Query could run in the cloud? I explored this concept by
+                building a <strong>mini AWS-powered data transformation pipeline</strong>
+                to automate the processing of daily system outputs at Synapxe.
               </p>
-              <a href="./internship.html" target="_blank" class="text-primary fw-bold ms-2">Open internship page →</a>
+              <a href="./internship.html" target="_blank" class="timeline-internship-link fw-bold ms-2">Open internship page →</a>
             </div>
 
           </div>
@@ -1418,27 +1948,124 @@
           <!-- RIGHT: Time Period -->
           <div class="col-6">
             <div class="timeline-year text-start">
-              <h5 class="fw-bold"><span style="color: #d8bfff; font-weight: bold;">2025 – 2026</span></h5>
+              <div class="timeline-date-action">
+                <h5 class="fw-bold"><span style="color: #d8bfff; font-weight: bold;">2025 – 2026</span></h5>
+                <button class="timeline-prompt timeline-prompt-button" type="button"
+                  aria-controls="internship-card-content" aria-expanded="false"
+                  data-prompt="How does my technical skillset I've built over the years help me in a real-world work environment?">
+                  How does my technical skillset I've built over the years help me in a real-world work environment?
+                </button>
+              </div>
             </div>
           </div>
           <div class="col-6"></div>
         </div>
 
       </div>
-      <div class="education-quote-connector" aria-hidden="true"></div>
-      <div class="education-journey-quote-row">
-        <img class="education-quote-image" src="./img/aboutMe.jpeg" alt="Portrait photo beside my journey quote">
-        <blockquote class="education-journey-quote">
-          <p>" From my first robotics lessons to full-stack projects and process automation, each step has shaped my <strong>curiosity </strong>and <strong>drive</strong> to keep learning. "</p>
-        </blockquote>
-      </div>
     </div>
   </section>
+
+    <section id="whats-next"
+    class="min-vh-100 bg-dark text-white d-flex flex-column justify-content-center align-items-center fade-section py-5">
+      <div class="container whats-next-container text-center">
+          <h1 class="fw-bold mb-0" style="font-size: 3rem;">
+            <span style="color: #F5F5Dc; font-weight: bold;">Whats Next for Me?</span>
+          </h1>
+          <br>
+          <br>
+        <div class="whats-next-board">
+
+          <article class="project-showcase">
+            <div class="project-showcase-copy">
+              <span class="project-showcase-status">Currently building</span>
+              <p class="project-showcase-label mt-4 mb-0">A work in progress</p>
+              <h3 class="project-showcase-title">My Portfolio Website</h3>
+              <p class="project-showcase-description">
+                Last year, I submitted a deck of slides as my portfolio to showcase my technical skills and experiences. This year, I decided to take it a step further and build a portfolio website to showcase my technical skills and experiences in a more interactive and engaging way.
+              </p>
+              <ul class="project-showcase-tech" aria-label="Technologies used">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>Bootstrap</li>
+              </ul>
+              <a class="project-showcase-link" href="./projects.html">
+                <span style="color: #A7C7E7; font-weight: bold;">Explore my projects <span aria-hidden="true">→</span></span>
+              </a>
+            </div>
+            <div class="project-showcase-visual">
+              <img class="project-showcase-image" src="./img/Projects/portfolio.png"
+                alt="Screenshot of my portfolio’s co-curricular activities page">
+            </div>
+          </article>
+
+          <section class="upcoming-projects" aria-labelledby="upcoming-projects-heading">
+            <h3 id="upcoming-projects-heading" class="upcoming-projects-heading">Next on my pinboard</h3>
+            <div class="next-project-grid">
+              <article class="next-project-pin">
+                <span class="next-project-number"><strong>PROJECT 01</strong></span>
+                <span class="project-showcase-status">In Progress </span>
+                <blockquote>    </blockquote>
+                <h4><span style="color: #A7C7E7; font-weight: bold;">AthleatCount</span></h4>
+                <p>Athleatcount is a web application that helps athletes track their <strong>training</strong> and <strong>nutrition</strong>, while tracking their spendings and progress. Providing a baseline for athletes <strong>overeating/overspending</strong>.</p>
+              </article>
+              <article class="next-project-pin">
+                <span class="next-project-number"><strong></strong>PROJECT 02</strong></span>
+                <span class="project-showcase-status">Ideation</span>
+                <blockquote>    </blockquote>
+                <h4><span style="color: #A7C7E7; font-weight: bold;">AI Assisted Business Analytical Dashboard</span></h4>
+                <p>A AI-powered dashboard for business analytics and insights that targets <strong>smaller - medium-sized businesses</strong> to help get started.</p>
+              </article>
+              <article class="next-project-pin">
+                <span class="next-project-number"><strong>PROJECT 03</strong></span>
+                <span class="project-showcase-status">Coming soon</span>
+                <blockquote>    </blockquote>
+                <h4><span style="color: #A7C7E7; font-weight: bold;">Telegram Bots</span></h4>
+                <p>I've been researching to create a series of telegram bots to help boost operational efficiency at my current workplace.</p>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+
+
   </div>
 
+  <footer class="site-footer">
+    <p>&copy; 2026 See Yong Hong</p>
+    <nav class="site-footer-social" aria-label="Social and contact links">
+      <a href="https://github.com/sertzzxc" target="_blank" rel="noopener noreferrer"
+        aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.71.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .08 1.53 1.05 1.53 1.05.9 1.57 2.35 1.12 2.92.86.09-.66.35-1.12.64-1.38-2.22-.26-4.56-1.13-4.56-5.04 0-1.11.39-2.02 1.03-2.74-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.4 9.4 0 0 1 12 6.87c.85 0 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.74 0 3.92-2.34 4.78-4.57 5.03.36.32.68.94.68 1.9 0 1.38-.01 2.49-.01 2.83 0 .27.18.59.69.49A10.23 10.23 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z"/>
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com/in/seeyonghong/" target="_blank" rel="noopener noreferrer"
+        aria-label="LinkedIn" title="LinkedIn">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.89 1.63-1.85 3.37-1.85 3.61 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.02H3.56V9h3.56v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0Z"/>
+        </svg>
+      </a>
+      <a href="mailto:seeyh06@gmail.com" aria-label="Email" title="Email">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 3.2-8 5-8-5V6l8 5 8-5v1.2Z"/>
+        </svg>
+      </a>
+      <a href="tel:+6582017958" aria-label="Call" title="Phone">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6.62 10.79a15.53 15.53 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z"/>
+        </svg>
+      </a>
+    </nav>
+
+    <a class="footer-back-to-top" href="#main">Back to top ↑</a>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./index.js" type="text/javascript"></script>
+  <script src="./footer.js" type="text/javascript"></script>
 
-
-</HTML>
+  </body>
+</html>
