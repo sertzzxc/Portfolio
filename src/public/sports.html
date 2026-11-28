@@ -10,6 +10,8 @@
 
   <!-- Main CSS File -->
   <link href="./style.css" rel="stylesheet">
+  <link href="./sports.css" rel="stylesheet">
+
   <style>
     .card {
       width: 100%;
@@ -50,18 +52,18 @@
   flex-direction: column;
   justify-content: flex-start;
 }
-.cca-left h1 { font-size: 3rem; color: #d97a1c; margin-bottom: 30px; }
-.cca-left p { font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px; }
-.see-more { margin-top: auto; color: #000; font-weight: 500; text-decoration: underline; }
+.cca-left h1 { font-size: clamp(2.75rem, 4.4vw, 3.5rem); color: #d97a1c; margin-bottom: 30px; }
+.cca-left p { font-size: clamp(0.95rem, 1.15vw, 1.05rem); line-height: 1.7; margin-bottom: 20px; }
+.see-more { margin-top: auto; color: #000; font-size: 0.95rem; font-weight: 500; text-decoration: underline; }
 
 /* Right panel */
 .cca-right {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   padding: 120px 60px 60px 60px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* Timeline vertical line */
@@ -83,23 +85,43 @@
   border-radius: 12px;
   width: 250px;
   padding: 15px;
-  margin: 20px auto;
   position: absolute;
   z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  margin-top: -30px; /* adjust for overlap */
-  box-shadow: 0 4px 10px rgba(0,0,0,0.25); /* deeper shadow for depth */
-  
-  /* Add smooth transition for hover effect */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #000;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  transition: opacity 0.8s ease, transform 0.8s ease, box-shadow 0.3s ease;
 }
 
-/* On hover, scale the card and add a stronger shadow */
 .cca-card:hover {
-    transform: translateX(var(--x-offset)) scale(2);
+  color: #000;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+}
+
+.cca-card:focus-visible {
+  outline: 3px solid #d97a1c;
+  outline-offset: 4px;
+}
+
+.cca-board {
+  position: relative;
+  width: 100%;
+  min-height: 700px;
+}
+
+.cca-card--ultimate { left: 2%; top: 25px; }
+.cca-card--leadership { right: 2%; top: 25px; }
+.cca-card--national { left: 2%; top: 365px; }
+.cca-card--volunteering { right: 2%; top: 365px; }
+
+.cca-card h5,
+.cca-card p {
+  color: inherit;
 }
 
 .slide-left {
@@ -128,10 +150,6 @@
   z-index: 2;
 }
 
-/* Alternate left/right sides */
-.cca-card:nth-child(odd) { margin-left: auto; margin-right: 50px; }
-.cca-card:nth-child(even) { margin-left: 50px; margin-right: auto; }
-
 /* Card images */
 .cca-card img {
   width: 100%;
@@ -153,21 +171,58 @@
 @media (max-width: 992px) {
   .cca-container { grid-template-columns: 1fr; column-gap: 0; }
   .cca-right { padding: 80px 30px 30px 30px; }
-  .cca-card, .cca-card:nth-child(even), .cca-card:nth-child(odd) {
-      margin-left: auto; margin-right: auto; width: 80%;
+  .cca-board { min-height: 700px; }
+  .cca-card {
+    width: min(300px, calc(50% - 12px));
   }
-  .timeline-line { left: 50%; }
+  .cca-card--ultimate { left: 0; top: 20px; }
+  .cca-card--leadership { right: 0; top: 20px; }
+  .cca-card--national { left: 0; top: 365px; }
+  .cca-card--volunteering { right: 0; top: 365px; }
 }
 
 @media (max-width: 576px) {
   .cca-left { padding: 60px 20px 20px 20px; }
   .cca-right { padding: 60px 20px 20px 20px; }
+  .cca-board { min-height: 590px; }
+  .cca-card {
+    width: calc(50% - 8px);
+    padding: 12px;
+  }
+  .cca-card--ultimate { left: 0; top: 12px; }
+  .cca-card--leadership { right: 0; top: 12px; }
+  .cca-card--national { left: 0; top: 300px; }
+  .cca-card--volunteering { right: 0; top: 300px; }
+  .cca-card img { height: 110px; }
+  .cca-card h5 { font-size: 0.95rem; }
+  .cca-card p { font-size: 0.85rem; }
 }
 
 .cca-card:active {
-  cursor: grabbing;
   box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-  transform: scale(1.05); /* pop effect while dragging */
+}
+
+.pin {
+  touch-action: none;
+  user-select: none;
+}
+
+.mini-board {
+  height: 115px;
+}
+
+.mini-card:first-child {
+  left: calc(50% - 90px);
+  top: 10px;
+}
+
+.mini-card:nth-child(2) {
+  left: calc(50% + 10px);
+  top: 10px;
+}
+
+.mini-card .pin {
+  touch-action: none;
 }
 
 .pin {
@@ -189,12 +244,56 @@
 
 .fade-card {
   opacity: 0;
-  transition: opacity 0.8s ease;
+  transform: translateY(25px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-/* When visible: fade in */
-.fade-section.visible .fade-card {
+.fade-card.visible {
   opacity: 1;
+  transform: translateY(0);
+}
+
+.mini-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.mini-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cca-section {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.cca-section.scrolled-out {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.cca-section .slide-left,
+.cca-section .slide-up,
+.cca-section .fade-card,
+.cca-section .mini-card {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-section,
+  .fade-card,
+  .mini-card,
+  .portfolio-section,
+  .cca-section,
+  .cca-section.scrolled-out {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 .drag-invite {
     background: #e0f0ff;
@@ -363,7 +462,7 @@
 
         <p>
             Outside of academics, I actively engage in co-curricular activities that
-            develop my leadership, teamwork, and personal growth.
+            develop my <strong>leadership</strong>, <strong>teamwork</strong>, and <strong>personal growth</strong>.
         </p>
 
         <p>
@@ -386,53 +485,238 @@
                     </div>
                 </div>
             </div>
-
+        <blockquote></blockquote>
+        <p>
+          This section showcases my <strong>experiences beyond the classroom</strong>, highlighting my involvement in
+          <strong>co-curricular activities and professional development</strong>. Through these experiences, I aim to express my
+          <strong>creativity, personal growth</strong>, and the <strong>skills I have developed</strong> along the way.
+          Utilising the designs in the following sections, I wanted to create and show how each experience has its
+          <strong>own unique story</strong> and <strong>shaped me into the person I am today</strong>.
+        </p>
         <a href="#" class="see-more">See more</a>
+
         </div>
 
         <!-- RIGHT PANEL -->
         <div class="cca-right">
         <div class="drag-invite-row">
             <div class="drag-invite-msg">
-                <p><strong>Hint:</strong> Drag the<strong> pins</strong>  below to move the cards around like a pinboard!</p>
+                <p><strong>Hint:</strong> Drag the pins to move cards, or tap a card for details.</p>
             </div>
             <button class="reset-pins-btn" id="resetPins">
                 Reset Pins
             </button>
         </div>
-       
-        <div class="cca-card fade-card delay-1" style="left: 25px; top: 400px;">
-            <div class="pin"></div> <!-- only draggable part -->
+
+
+        <div class="cca-board">
+        <a class="cca-card cca-card--ultimate fade-card delay-1" href="#sp-ultimate">
+            <div class="pin" aria-hidden="true"></div>
             <img src="./img/ultimate-logo.png" alt="SP Ultimate Logo">
             <h5><strong>SINGAPORE POLYTECHNIC<br>ULTIMATE FRISBEE</strong></h5>
             <p>My journey with SP Ultimate Frisbee Club.</p>
-        </div>
+        </a>
 
-         <div class="cca-card fade-card delay-2" style="left: 625px; top: 400px;">
-            <div class="pin"></div> <!-- only draggable part -->
+        <a class="cca-card cca-card--leadership fade-card delay-2" href="#leadership">
+            <div class="pin" aria-hidden="true"></div>
             <img src="./img/leadership.png" alt="Leadership Experience">
             <h5><strong>LEADERSHIP EXPERIENCES</strong></h5>
             <p>Leading Singapore Polytechnic Ultimate Club.</p>
-        </div>
+        </a>
         
         
-        <div class="cca-card fade-card delay-3" style="left: 300px; top: 400px;">
-            <div class="pin"></div> <!-- only draggable part -->
+        <a class="cca-card cca-card--national fade-card delay-3" href="#representation">
+            <div class="pin" aria-hidden="true"></div>
             <img src="./img/national.png" alt="National Representation">
             <h5><strong>NATIONAL REPRESENTATION</strong></h5>
             <p>My international representation experience.</p>
-        </div>
+        </a>
 
-        <div class="cca-card fade-card delay-4" style="left: 900px; top: 400px;">
-            <div class="pin"></div> <!-- only draggable part -->
+        <a class="cca-card cca-card--volunteering fade-card delay-4" href="#volunteering-details">
+            <div class="pin" aria-hidden="true"></div>
             <img src="./img/volunteer.png" alt="Volunteering">
             <h5><strong>VOLUNTEERING</strong></h5>
             <p>Showcasing my times spent volunteering.</p>
-        </div>
+        </a>
 
+        </div>
         </div>
 
     </div>
+  </section>
+
+  <section class="portfolio-section fade-section" id="sp-ultimate">
+
+      <div class="portfolio-grid">
+
+          <!-- SP Ultimate Logo -->
+          <div class="logo-container">
+              <img src="./img/ultimate-logo.png" alt="SP Ultimate Logo">
+          </div>
+
+          <!-- POL-ITE 2025 -->
+          <div class="photo photo-1">
+              <p class="caption">POL-ITE Games 2025</p>
+              <img src="./img/Co-Curricular-Activities/polite-2025.png" alt="POL-ITE Games 2025">
+          </div>
+
+          <!-- SP vs NP -->
+          <div class="photo photo-2">
+              <p class="caption">Singapore Polytechnic VS Nanyang Polytechnic</p>
+              <img src="./img/Co-Curricular-Activities/spvsnp.png" alt="SP vs NP">
+          </div>
+
+          <!-- Jersey Presentation -->
+          <div class="photo photo-3">
+              <img src="./img/Co-Curricular-Activities/jerseypresentation.png" alt="Jersey Presentation 2025">
+              <p class="caption">Jersey Presentation 2025</p>
+          </div>
+
+          <!-- POL-ITE 2024 -->
+          <div class="photo photo-4">
+              <img src="./img/Co-Curricular-Activities/polite2024.png" alt="POL-ITE Games 2024">
+              <p class="caption">POL-ITE Games 2024</p>
+          </div>
+
+          <!-- Title and Details -->
+          <div class="portfolio-details" id="sp-ultimate-details" tabindex="-1">
+              <h1>
+                  Singapore<br>
+                  Polytechnic<br>
+                  Ultimate
+              </h1>
+
+              <div class="details">
+                  <p><strong>Role</strong><span>: School Representative</span></p>
+                  <p><strong>Year</strong><span>: 2023 - Present</span></p>
+              </div>
+          </div>
+
+          <!-- Description -->
+          <div class="description">
+            <blockquote></blockquote>
+            <blockquote></blockquote>
+              <h3><strong>My Competition Experiences</strong></h3>
+
+              <p>
+                  Through my competition experiences in
+                  <strong>POL-ITE 2024</strong> and <strong>2025</strong>,
+                  as well as the <strong>Inter-Varsity POL-ITE Games
+                  2025 and 2026</strong>, I developed a strong sense
+                  of purpose and agility, adapting quickly to
+                  high-pressure situations while staying focused
+                  on <strong>team goals</strong>.
+
+                  Competing at this level reinforced respect,
+                  both in how I supported teammates and opponents,
+                  and in maintaining long-term performance and
+                  wellbeing.
+
+                  Above all, these experiences shaped my
+                  <strong>integrity and pursuit of excellence</strong>,
+                  pushing me to uphold <strong>high standards</strong>,
+                  remain disciplined, and continuously strive for
+                  improvement both on and off the field.
+              </p>
+          </div>
+
+          <!-- Page Number -->
+          <div class="page-number">1</div>
+
+      </div>
+
+  </section>
+
+  <section class="editorial-section representation-section fade-section" aria-labelledby="representation-title" id="representation">
+    <div class="representation-layout">
+      <h1 class="representation-title" id="representation-title">International<br>Representation</h1>
+
+      <figure class="story-image representation-photo representation-photo--departure">
+        <img src="./img/Co-Curricular-Activities/departure.png" alt="Placeholder for the national team's departure">
+      </figure>
+      <figure class="story-image representation-photo representation-photo--portrait">
+        <img src="./img/national.png" alt="Placeholder portrait in the national jersey">
+      </figure>
+      <figure class="story-image representation-photo representation-photo--game-right">
+        <img src="./img/Co-Curricular-Activities/gameplay.png" alt="Placeholder for an on-field moment">
+      </figure>
+      <figure class="story-image representation-photo representation-photo--action">
+        <img src="./img/Co-Curricular-Activities/gameplay2.png" alt="Placeholder for a game-day action photo">
+      </figure>
+      <figure class="story-image representation-photo representation-photo--team">
+        <img src="./img/Co-Curricular-Activities/team.png" alt="Placeholder for a team photo">
+      </figure>
+      <figure class="story-image representation-photo representation-photo--team-group">
+        <img src="./img/Co-Curricular-Activities/vsireland.png" alt="Placeholder for the championship team">
+      </figure>
+
+      <aside class="representation-copy">
+        <dl class="representation-facts">
+          <div><dt>Role</dt><dd>National Representative</dd></div>
+          <div><dt>Year</dt><dd>2024</dd></div>
+        </dl>
+        <p>
+          Being selected to represent <strong>Singapore</strong> at the
+          <strong>World Junior Ultimate Championships (Under-20)</strong>,
+          with approval from Sport Singapore, was a defining experience.
+          Competing internationally strengthened my
+          <strong>discipline, adaptability, and mental resilience</strong>,
+          while reinforcing the importance of <strong>teamwork, respect,
+          and accountability</strong>.
+        </p>
+        <p>
+          Alongside my training and competition responsibilities, I also contributed to
+          <strong>community outreach and youth development</strong>, <strong>mentoring younger players</strong>
+          back at Singapore Polytechnic. This experience not only enhanced my
+          <strong>leadership and communication skills</strong> but also deepened my commitment to
+          <strong>fostering a positive sports culture</strong>.
+        </p>
+        <p>
+          With Frisbee being a <strong>relatively niche sport in Singapore</strong>, I am glad to have been able to
+          <strong>represent my country and contribute to the growth of the sport</strong>, inspiring others to
+          pursue their passions and embrace the values of <strong>sportsmanship and dedication</strong>.
+        </p>
+      </aside>
+
+    </div>
+  </section>
+
+  <section class="editorial-section leadership-section fade-section" aria-labelledby="leadership-title" id="leadership">
+    <div class="leadership-content">
+      <div class="leadership-gallery">
+        <figure class="story-image leadership-photo">
+          <img src="./img/Co-Curricular-Activities/teaam.png" alt="Placeholder for a club community photo">
+        </figure>
+        <figure class="story-image leadership-photo">
+          <img src="./img/Co-Curricular-Activities/huddle.png" alt="Placeholder for a team huddle">
+        </figure>
+        <figure class="story-image leadership-photo">
+          <img src="./img/Co-Curricular-Activities/teampic.png" alt="Placeholder for a club gathering">
+        </figure>
+        <figure class="story-image leadership-photo">
+          <img src="./img/Co-Curricular-Activities/firstjersey.png" alt="Placeholder for a leadership moment">
+        </figure>
+      </div>
+
+      <div class="leadership-copy">
+        <h2 id="leadership-title">Leadership Experience</h2>
+        <p>
+          From <strong>2023 to 2025</strong>, I served as an
+          <strong>EXCO member and Vice-President</strong> of the Singapore
+          Polytechnic Ultimate Club. I helped plan club activities, manage
+          administrative operations, and organize events. Working with
+          teammates to build an inclusive sports culture strengthened my
+          <strong>communication, coordination, and strategic planning</strong>,
+          while reinforcing responsibility, teamwork, and leading by example.
+        </p>
+        <dl class="leadership-facts">
+          <div><dt>Role</dt><dd>Vice-President</dd></div>
+          <div><dt>Year</dt><dd>2023 - 2025</dd></div>
+        </dl>
+      </div>
+
+    </div>
+  </section>
 
   <footer class="site-footer">
     <p>&copy; 2026 See Yong Hong</p>
@@ -466,6 +750,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="./skills-chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./sports.js" type="text/javascript"></script>
   <script src="./footer.js" type="text/javascript"></script>
 </body>
