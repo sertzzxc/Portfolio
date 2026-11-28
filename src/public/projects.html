@@ -1,4 +1,3 @@
-<HTML>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,11 +12,6 @@
   <!-- Main CSS File -->
   <link href="./style.css" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-    }
-
-
     .card {
       width: 100%;
       max-width: 600px;
@@ -29,71 +23,6 @@
     .card-body {
       text-align: center;
       padding: 30px;
-    }
-
-    #navbar {
-        transition: all 0.3s ease;
-        padding: 1.5rem 1.5rem;
-        font-size: 1rem;
-
-        border-radius: 20px;
-        margin: 15px 25px;
-
-        background: rgba(20, 20, 20, 0.95);
-        backdrop-filter: blur(12px);
-
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-    }
-
-    /* Small Navbar when scrolled */
-    #navbar.navbar-small {
-        padding: 0.5rem 1.5rem;
-        font-size: 0.9rem;
-
-        border-radius: 30px;
-        margin: 10px 35px;
-    }
-
-    /* Navbar Links */
-    .navbar-nav .nav-link {
-        color: #fff !important;
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s ease;
-
-        border-radius: 50px;
-        padding: 8px 18px !important;
-    }
-
-    /* Rounded underline */
-    .navbar-nav .nav-link::before {
-        content: "";
-        position: absolute;
-        bottom: 4px;
-        left: 20%;
-        width: 0;
-        height: 2px;
-        border-radius: 50px;
-        background-color: #fff;
-        transition: width 0.4s ease-in-out;
-    }
-
-    .navbar-nav .nav-link:hover::before {
-        width: 60%;
-    }
-
-    /* Hover */
-    .nav-item .nav-link:hover {
-        color: #fff !important;
-        background: rgba(255, 255, 255, 0.1);
-    }
-
-    /* Focus / Active */
-    .navbar-nav .nav-link:focus,
-    .navbar-nav .nav-link:active {
-        background-color: rgba(255, 255, 255, 0.15);
-        color: #fff !important;
-        outline: none;
     }
 
 
@@ -922,7 +851,7 @@
   <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-1">
     <div class="container-fluid">
       <!-- Brand -->
-      <a class="navbar-brand fw-bold text-primary fs-4" href="#">SYH19</a>
+      <a class="navbar-brand fw-bold text-primary fs-4" href="./index.html#main">SYH19</a>
 
       <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light mode"
         title="Switch to light mode" aria-pressed="false">
@@ -945,19 +874,19 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link text-white mx-2" href="./index.html#main">Dashboard</a>
+            <a class="nav-link text-white mx-2" href="./index.html#main"><span style="color: #a7d8f0; font-weight: bold;">01. </span>Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white mx-2" href="./index.html#about">About Me</a>
+            <a class="nav-link text-white mx-2" href="./projects.html"><span style="color: #a7d8f0; font-weight: bold;">02. </span>My Projects</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white mx-2" href="./technicalSkills.html">Skills</a>
+            <a class="nav-link text-white mx-2" href="./sports.html"><span style="color: #a7d8f0; font-weight: bold;">03. </span>Co-Curricular Activities</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white mx-2" href="./index.html#skills">Projects</a>
+            <a class="nav-link text-white mx-2" href="./sports.html"><span style="color: #a7d8f0; font-weight: bold;">04. </span>My Achievements</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white mx-2" href="./sports.html">Sports</a>
+            <a class="nav-link text-white mx-2" href="./index.html#internship"><span style="color: #d8bfff; font-weight: bold;">Internship</span></a>
           </li>
         </ul>
       </div>
@@ -1131,8 +1060,37 @@
       </article>
     </dialog>
   </main>
+  <footer class="site-footer">
+    <p>&copy; 2026 See Yong Hong</p>
+    <nav class="site-footer-social" aria-label="Social and contact links">
+      <a href="https://github.com/sertzzxc" target="_blank" rel="noopener noreferrer"
+        aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.71.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .08 1.53 1.05 1.53 1.05.9 1.57 2.35 1.12 2.92.86.09-.66.35-1.12.64-1.38-2.22-.26-4.56-1.13-4.56-5.04 0-1.11.39-2.02 1.03-2.74-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.4 9.4 0 0 1 12 6.87c.85 0 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.74 0 3.92-2.34 4.78-4.57 5.03.36.32.68.94.68 1.9 0 1.38-.01 2.49-.01 2.83 0 .27.18.59.69.49A10.23 10.23 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z"/>
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com/in/seeyonghong/" target="_blank" rel="noopener noreferrer"
+        aria-label="LinkedIn" title="LinkedIn">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.89 1.63-1.85 3.37-1.85 3.61 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.02H3.56V9h3.56v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0Z"/>
+        </svg>
+      </a>
+      <a href="mailto:seeyh06@gmail.com" aria-label="Email" title="Email">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 3.2-8 5-8-5V6l8 5 8-5v1.2Z"/>
+        </svg>
+      </a>
+      <a href="tel:+6582017958" aria-label="Call" title="Phone">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6.62 10.79a15.53 15.53 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z"/>
+        </svg>
+      </a>
+    </nav>
+    <a class="footer-back-to-top" href="./index.html#main">Back to top ↑</a>
+  </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./skills-tree.js"></script>
   <script src="./project-details.js"></script>
+  <script src="./footer.js"></script>
 </body>
 </html>

@@ -39,9 +39,76 @@ document.addEventListener("DOMContentLoaded", () => {
 
   typeLoop(); // start loop
 
+  const reflectionToggles = document.querySelectorAll("#skills .timeline-prompt-button");
+  const reflectionsToggle = document.getElementById("timeline-reflections-toggle");
+
+  const setReflectionState = (reflectionToggle, showReflection) => {
+    const contentId = reflectionToggle.getAttribute("aria-controls");
+    const cardContent = contentId ? document.getElementById(contentId) : null;
+    const overview = cardContent && cardContent.querySelector(".timeline-overview");
+    const reflection = cardContent && cardContent.querySelector(".timeline-reflection");
+    const timelineItem = reflectionToggle.closest(".timeline-item");
+
+    if (!overview || !reflection) return;
+
+    const outgoingPanel = showReflection ? overview : reflection;
+    const incomingPanel = showReflection ? reflection : overview;
+    outgoingPanel.hidden = true;
+    incomingPanel.hidden = false;
+    incomingPanel.addEventListener("animationend", () => {
+      incomingPanel.classList.remove("is-entering");
+    }, { once: true });
+    incomingPanel.classList.add("is-entering");
+
+    reflectionToggle.setAttribute("aria-expanded", String(showReflection));
+    reflectionToggle.textContent = showReflection
+      ? "Back to overview"
+      : reflectionToggle.dataset.prompt;
+
+    if (timelineItem) {
+      timelineItem.classList.toggle("reflection-open", showReflection);
+    }
+  };
+
+  const syncReflectionsToggle = () => {
+    if (!reflectionsToggle) return;
+    const allReflectionsOpen = Array.from(reflectionToggles)
+      .every((toggle) => toggle.getAttribute("aria-expanded") === "true");
+    reflectionsToggle.setAttribute("aria-expanded", String(allReflectionsOpen));
+    reflectionsToggle.querySelector("span").textContent = allReflectionsOpen
+      ? "Show all overviews"
+      : "Click this to reveal some of the personal reflections I've had over the years";
+  };
+
+  reflectionToggles.forEach((reflectionToggle) => {
+    reflectionToggle.addEventListener("click", () => {
+      const showReflection = reflectionToggle.getAttribute("aria-expanded") !== "true";
+      setReflectionState(reflectionToggle, showReflection);
+      syncReflectionsToggle();
+      updateTimelineProgress();
+    });
+  });
+
+  if (reflectionsToggle) {
+    reflectionsToggle.addEventListener("click", () => {
+      const allReflectionsOpen = Array.from(reflectionToggles)
+        .every((toggle) => toggle.getAttribute("aria-expanded") === "true");
+      const showReflection = !allReflectionsOpen;
+
+      reflectionToggles.forEach((toggle) => {
+        setReflectionState(toggle, showReflection);
+      });
+
+      syncReflectionsToggle();
+      updateTimelineProgress();
+    });
+  }
+
   let lastScrollY = window.scrollY;
   const root = document.documentElement;
   const scrollProgressBar = document.getElementById("scroll-progress");
+  const timeline = document.querySelector("#skills .timeline");
+  const timelineDots = timeline ? Array.from(timeline.querySelectorAll(".timeline-dot")) : [];
 
   function updateAmbientBackground() {
     const maxScroll = root.scrollHeight - window.innerHeight;
@@ -54,8 +121,33 @@ document.addEventListener("DOMContentLoaded", () => {
     scrollProgressBar.setAttribute("aria-valuenow", Math.round(progress * 100).toString());
   }
 
+  function updateTimelineProgress() {
+    if (!timeline) {
+      return;
+    }
+
+    const timelineBounds = timeline.getBoundingClientRect();
+    const progress = Math.max(
+      0,
+      Math.min(1, (window.innerHeight * 0.55 - timelineBounds.top) / timelineBounds.height)
+    );
+
+    timeline.style.setProperty("--timeline-progress", progress.toString());
+
+    const progressLinePosition = timelineBounds.top + timelineBounds.height * progress;
+    timelineDots.forEach((dot) => {
+      const dotBounds = dot.getBoundingClientRect();
+      const dotCenter = dotBounds.top + dotBounds.height / 2;
+      dot.classList.toggle("is-passed", dotCenter <= progressLinePosition);
+    });
+  }
+
   updateAmbientBackground();
-  window.addEventListener("resize", updateAmbientBackground);
+  updateTimelineProgress();
+  window.addEventListener("resize", () => {
+    updateAmbientBackground();
+    updateTimelineProgress();
+  });
 
   // Shrink navbar on scroll
   window.addEventListener("scroll", function() {
@@ -67,7 +159,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     updateAmbientBackground();
-  });
+    updateTimelineProgress();
+  }, { passive: true });
 
 
   const sections = document.querySelectorAll('.fade-section');
